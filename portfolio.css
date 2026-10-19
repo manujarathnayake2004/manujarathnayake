@@ -193,7 +193,71 @@ p { color: var(--muted); }
   .gallery-header { padding-top: 22px; }
   .gallery-item figcaption { padding: 20px; }
 }
+/* Motion is an enhancement. Content is never hidden while waiting for JavaScript. */
+.site-header { transition: background .25s ease, box-shadow .25s ease; }
+.site-header.is-scrolled { background: rgba(9,16,30,.98); box-shadow: 0 10px 32px rgba(0,0,0,.2); }
+.site-header::after { content: ""; position: absolute; bottom: -1px; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg,#35a8ff,#8cceff); transform: scaleX(var(--scroll-progress,0)); transform-origin: left; pointer-events: none; }
+.menu a { position: relative; transition: color .2s ease; }
+.menu a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 7px; height: 2px; border-radius: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
+.menu a:hover::after, .menu a:focus-visible::after { transform: scaleX(1); }
+.hero { position: relative; isolation: isolate; overflow: hidden; }
+.hero::before, .hero::after { content: ""; position: absolute; z-index: -1; pointer-events: none; border-radius: 50%; }
+.hero::before { width: min(850px,100%); height: 750px; right: -18%; top: -30%; background: radial-gradient(ellipse,rgba(53,168,255,.17),rgba(47,90,190,.07) 42%,transparent 69%); }
+.hero::after { width: 65%; height: 80%; left: -30%; bottom: -35%; background: radial-gradient(ellipse,rgba(71,91,221,.13),transparent 66%); }
+.portrait-stage { position: relative; justify-self: center; width: min(370px,100%); aspect-ratio: 1; }
+.portrait-stage .hero-photo { width: 100%; }
+.portrait-stage::before, .portrait-stage::after { content: ""; position: absolute; border-radius: 50%; pointer-events: none; }
+.portrait-stage::before { inset: -14px; border: 1px solid rgba(104,182,247,.12); border-top: 2px solid rgba(104,182,247,.8); border-right-color: rgba(104,182,247,.35); transform: rotate(-28deg); }
+.portrait-stage::after { inset: -23px; border: 1px solid transparent; border-bottom-color: rgba(104,182,247,.32); transform: rotate(24deg); }
+.motion-enabled .hero::before { animation: ambient-drift 16s ease-in-out infinite alternate; animation-play-state: paused; }
+.motion-enabled .hero::after { animation: ambient-drift 20s ease-in-out infinite alternate-reverse; animation-play-state: paused; }
+.motion-enabled .portrait-stage::before { animation: portrait-orbit 28s linear infinite; animation-play-state: paused; }
+.motion-enabled .portrait-stage::after { animation: portrait-orbit 38s linear infinite reverse; animation-play-state: paused; }
+.motion-enabled:not(.tab-hidden) .hero.is-in-view::before,
+.motion-enabled:not(.tab-hidden) .hero.is-in-view::after,
+.motion-enabled:not(.tab-hidden) .hero.is-in-view .portrait-stage::before,
+.motion-enabled:not(.tab-hidden) .hero.is-in-view .portrait-stage::after { animation-play-state: running; }
+@keyframes ambient-drift { from { transform: translate3d(0,0,0) scale(1); } to { transform: translate3d(-5%,5%,0) scale(1.08); } }
+@keyframes portrait-orbit { from { transform: rotate(-28deg); } to { transform: rotate(332deg); } }
+.work-card, .project-detail, .skill-group, .gallery-item { position: relative; transition: transform .28s ease, border-color .28s ease, box-shadow .28s ease; }
+.work-card:focus-visible, .project-detail:focus-within, .gallery-item:focus-within { border-color: rgba(53,168,255,.65); box-shadow: 0 14px 36px -18px rgba(53,168,255,.3); }
+.work-card::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at top right,rgba(53,168,255,.09),transparent 65%); opacity: 0; transition: opacity .3s ease; }
+.work-card:hover::after, .work-card:focus-visible::after { opacity: 1; }
+.work-caption h3 span, .btn-primary svg { transition: transform .25s ease; }
+.work-card:hover .work-caption h3 span, .work-card:focus-visible .work-caption h3 span { transform: translate(3px,-3px); }
+.btn-primary:hover svg, .btn-primary:focus-visible svg { transform: translateX(3px); }
+.btn { transition: background .22s ease, transform .22s ease, box-shadow .22s ease; }
+.btn-primary:hover, .btn-primary:focus-visible { box-shadow: 0 8px 28px -12px rgba(53,168,255,.65); }
+.btn:active { transform: translateY(1px); }
+.whatsapp-fab { transition: background .22s ease, transform .22s ease; }
+.whatsapp-fab:hover { transform: translateY(-3px); }
+.motion-toggle { position: fixed; left: 20px; bottom: 20px; z-index: 25; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 9px 13px; border: 1px solid rgba(143,208,255,.25); border-radius: 12px; background: rgba(11,18,32,.94); color: #b9cde7; font-size: .72rem; box-shadow: 0 6px 24px rgba(0,0,0,.15); }
+.motion-toggle[hidden] { display: none; }
+.motion-toggle::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #35a8ff; }
+.motion-toggle[aria-pressed="false"]::before { background: #8796ad; }
+.motion-toggle:hover { border-color: #8fd0ff; color: #fff; }
+.footer { padding-bottom: 88px; }
+.motion-enabled .image-dialog[open]::backdrop { animation: backdrop-enter .22s ease both; }
+.motion-enabled .image-dialog.is-closing::backdrop { animation: backdrop-exit .16s ease both; }
+@keyframes backdrop-enter { from { opacity: 0; } to { opacity: 1; } }
+@keyframes backdrop-exit { to { opacity: 0; } }
+@media (hover: hover) and (pointer: fine) {
+  .motion-enabled .work-card.tilt-ready:hover { transform: perspective(1000px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg)) translateY(-5px); }
+  .work-card:hover, .project-detail:hover, .gallery-item:hover, .skill-group:hover { border-color: rgba(53,168,255,.5); box-shadow: 0 16px 36px -22px rgba(53,168,255,.38); }
+  .motion-enabled .project-detail:hover, .motion-enabled .skill-group:hover { transform: translateY(-4px); }
+}
+@media (max-width: 600px) {
+  .portrait-stage { width: min(280px,76vw); }
+  .portrait-stage::before { inset: -10px; }
+  .portrait-stage::after { inset: -18px; }
+  .motion-toggle { left: 12px; bottom: 20px; }
+}
+html.motion-paused { scroll-behavior: auto; }
+.motion-paused *, .motion-paused *::before, .motion-paused *::after { animation: none !important; transition: none !important; }
+.motion-paused .work-card:hover, .motion-paused .btn:hover, .motion-paused .btn:active,
+.motion-paused .btn svg, .motion-paused .work-caption h3 span, .motion-paused .whatsapp-fab:hover { transform: none !important; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
+  .work-card:hover, .btn:hover, .btn:active, .btn svg, .work-caption h3 span, .whatsapp-fab:hover { transform: none !important; }
 }
