@@ -13,7 +13,7 @@ const revealed = new WeakSet();
 let revealObserver;
 let heroObserver;
 const hero = document.querySelector(".hero");
-const cards = [...document.querySelectorAll(".work-card")];
+const cards = [...document.querySelectorAll(".work-card, .project-detail, .skill-group, .service, .gallery-item, .contact-details")];
 const motionAllowed = () => !manuallyPaused && !reducedMotion.matches;
 const motionButton = document.createElement("button");
 motionButton.type = "button";
@@ -48,6 +48,11 @@ function reveal(element, delay = 0, entrance = false) {
     { opacity: entrance ? .55 : .15, translate: "0 18px" },
     { opacity: 1, translate: "0 0" },
   ], { delay, duration: entrance ? 640 : 620 });
+  element.querySelectorAll(".skill-group li, .facts > div, .contact-details > div, .strengths > li, .tags > span")
+    .forEach((item, index) => animateElement(item, [
+      { opacity: .25, transform: "translateX(-10px)" },
+      { opacity: 1, transform: "translateX(0)" },
+    ], { delay: delay + 100 + index * 65, duration: 480 }));
 }
 
 const revealSelector = [
@@ -56,7 +61,7 @@ const revealSelector = [
   ".work-card", ".project-heading", ".project-detail",
   ".career-grid > div > .eyebrow", ".career-grid > div > h2",
   ".timeline-item", ".education-list > li", ".skill-group", ".strengths",
-  ".service", ".contact-grid > div", ".contact-details", ".gallery-item", ".gallery-contact",
+  ".service", ".contact-grid > div", ".contact-details", ".gallery-item", ".gallery-contact", ".footer-inner",
 ].join(",");
 
 function startReveals() {
@@ -116,6 +121,7 @@ function applyMotionPreference() {
     card.style.removeProperty("--tilt-y");
   });
   if (enabled) startReveals();
+  document.dispatchEvent(new CustomEvent("portfolio:motionchange"));
 }
 
 motionButton.addEventListener("click", () => {
@@ -136,22 +142,18 @@ document.addEventListener("visibilitychange", updateVisibility);
 updateVisibility();
 applyMotionPreference();
 
-// The small desktop tilt moves the entire card without cropping its artwork.
+// Desktop cards follow the pointer without cropping the original artwork.
 cards.forEach((card) => {
   let frame = 0;
-  let bounds;
   let point;
   card.classList.add("tilt-ready");
   function resetTilt() {
     cancelAnimationFrame(frame);
     frame = 0;
-    bounds = null;
+    card.classList.remove("pointer-over");
     card.style.removeProperty("--tilt-x");
     card.style.removeProperty("--tilt-y");
   }
-  card.addEventListener("pointerenter", () => {
-    if (motionAllowed() && finePointer.matches) bounds = card.getBoundingClientRect();
-  });
   card.addEventListener("pointermove", (event) => {
     if (!motionAllowed() || !finePointer.matches || event.pointerType === "touch") return;
     point = { x: event.clientX, y: event.clientY };
@@ -159,17 +161,22 @@ cards.forEach((card) => {
     frame = requestAnimationFrame(() => {
       frame = 0;
       if (!motionAllowed() || !finePointer.matches) return;
-      bounds ||= card.getBoundingClientRect();
+      const bounds = card.getBoundingClientRect();
       const x = Math.max(-.5, Math.min(.5, (point.x - bounds.left) / bounds.width - .5));
       const y = Math.max(-.5, Math.min(.5, (point.y - bounds.top) / bounds.height - .5));
-      card.style.setProperty("--tilt-x", `${(-y * 3.5).toFixed(2)}deg`);
-      card.style.setProperty("--tilt-y", `${(x * 3.5).toFixed(2)}deg`);
+      card.classList.add("pointer-over");
+      card.style.setProperty("--tilt-x", `${(-y * 5).toFixed(2)}deg`);
+      card.style.setProperty("--tilt-y", `${(x * 5).toFixed(2)}deg`);
+      card.style.setProperty("--spot-x", `${(point.x - bounds.left).toFixed(1)}px`);
+      card.style.setProperty("--spot-y", `${(point.y - bounds.top).toFixed(1)}px`);
     });
   });
   card.addEventListener("pointerleave", resetTilt);
   card.addEventListener("pointercancel", resetTilt);
   card.addEventListener("blur", resetTilt);
   finePointer.addEventListener("change", resetTilt);
+  document.addEventListener("portfolio:motionchange", resetTilt);
+  window.addEventListener("blur", resetTilt);
 });
 
 // Scroll progress is updated at most once per animation frame.
@@ -285,3 +292,218 @@ if (dialog && typeof dialog.showModal === "function") {
     if (opener) opener.focus();
   });
 }
+
+// All pages share one decorative scene. It never intercepts a click or replaces the cursor.
+function createAmbientScene() {
+  const scene = document.createElement("div");
+  scene.className = "ambient-scene";
+  scene.setAttribute("aria-hidden", "true");
+  scene.innerHTML = '<div class="ambient-mesh"></div><div class="ambient-orbs"><i class="ambient-orb orb-blue"></i><i class="ambient-orb orb-violet"></i><i class="ambient-orb orb-teal"></i></div><canvas class="ambient-particles"></canvas><div class="pointer-aura"></div>';
+  document.body.prepend(scene);
+  const halo = document.createElement("div");
+  halo.className = "pointer-halo";
+  halo.setAttribute("aria-hidden", "true");
+  document.body.appendChild(halo);
+  const canvas = scene.querySelector("canvas");
+  const aura = scene.querySelector(".pointer-aura");
+  const orbs = scene.querySelector(".ambient-orbs");
+  const portrait = document.querySelector(".portrait-stage");
+  let context;
+  try { context = canvas.getContext("2d"); } catch { /* Gradients remain available. */ }
+  let width = 0;
+  let height = 0;
+  let frame = 0;
+  let previousTime = 0;
+  let lastDraw = 0;
+  let particles = [];
+  let portraitVisible = Boolean(portrait);
+  let pointer = { x: 0, y: 0, smoothX: 0, smoothY: 0, active: false };
+
+  function resizeScene() {
+    width = Math.max(1, window.innerWidth);
+    height = Math.max(1, window.innerHeight);
+    if (context) {
+      const ratio = Math.min(window.devicePixelRatio || 1, 2, Math.sqrt(3000000 / (width * height)));
+      canvas.width = Math.round(width * ratio);
+      canvas.height = Math.round(height * ratio);
+      context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    }
+    const count = finePointer.matches ? Math.min(60, Math.max(26, Math.round(width * height / 26000))) : 18;
+    particles = Array.from({ length: count }, () => ({
+      x: Math.random() * width, y: Math.random() * height,
+      vx: (Math.random() - .5) * 11, vy: -(3 + Math.random() * 6),
+      size: .7 + Math.random() * 1.2, phase: Math.random() * Math.PI * 2,
+    }));
+  }
+
+  function drawParticles(time, delta) {
+    if (!context) return;
+    context.clearRect(0, 0, width, height);
+    particles.forEach((particle, index) => {
+      particle.x += particle.vx * delta;
+      particle.y += particle.vy * delta;
+      const distance = pointer.active ? Math.hypot(particle.x - pointer.x, particle.y - pointer.y) : Infinity;
+      if (distance > 1 && distance < 150) {
+        const force = (1 - distance / 150) * 24 * delta;
+        particle.x += (particle.x - pointer.x) / distance * force;
+        particle.y += (particle.y - pointer.y) / distance * force;
+      }
+      if (particle.x < -12) particle.x = width + 12;
+      if (particle.x > width + 12) particle.x = -12;
+      if (particle.y < -12) particle.y = height + 12;
+      if (particle.y > height + 12) particle.y = -12;
+      const alpha = .3 + Math.sin(time * .0007 + particle.phase) * .12 + (distance < 180 ? .25 : 0);
+      context.fillStyle = `rgba(132,201,255,${alpha.toFixed(2)})`;
+      context.beginPath();
+      context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+      context.fill();
+      for (let j = index + 1; j < particles.length; j++) {
+        const other = particles[j];
+        const gap = Math.hypot(particle.x - other.x, particle.y - other.y);
+        if (gap >= 135) continue;
+        context.strokeStyle = `rgba(91,164,235,${((1 - gap / 135) * .16).toFixed(3)})`;
+        context.lineWidth = .65;
+        context.beginPath();
+        context.moveTo(particle.x, particle.y);
+        context.lineTo(other.x, other.y);
+        context.stroke();
+      }
+      if (pointer.active && distance < 180) {
+        context.strokeStyle = `rgba(133,211,255,${((1 - distance / 180) * .24).toFixed(3)})`;
+        context.beginPath();
+        context.moveTo(particle.x, particle.y);
+        context.lineTo(pointer.x, pointer.y);
+        context.stroke();
+      }
+    });
+  }
+
+  function paintScene(time) {
+    frame = 0;
+    if (!motionAllowed() || document.hidden) return;
+    const elapsed = previousTime ? Math.min(time - previousTime, 50) : 16;
+    previousTime = time;
+    if (pointer.active) {
+      const easing = 1 - Math.exp(-elapsed / 90);
+      pointer.smoothX += (pointer.x - pointer.smoothX) * easing;
+      pointer.smoothY += (pointer.y - pointer.smoothY) * easing;
+      aura.style.transform = `translate3d(${pointer.smoothX.toFixed(1)}px,${pointer.smoothY.toFixed(1)}px,0)`;
+      halo.style.transform = `translate3d(${pointer.smoothX.toFixed(1)}px,${pointer.smoothY.toFixed(1)}px,0)`;
+      const x = (pointer.smoothX / width - .5) * 2;
+      const y = (pointer.smoothY / height - .5) * 2;
+      orbs.style.transform = `translate3d(${(x * 16).toFixed(1)}px,${(y * 12).toFixed(1)}px,0)`;
+      if (portrait && portraitVisible) {
+        portrait.style.setProperty("--portrait-x", `${(x * 7).toFixed(1)}px`);
+        portrait.style.setProperty("--portrait-y", `${(y * 6).toFixed(1)}px`);
+        portrait.style.setProperty("--portrait-rotate", `${(x * 1.2).toFixed(2)}deg`);
+      }
+    }
+    if (!lastDraw || time - lastDraw >= (finePointer.matches ? 32 : 48)) {
+      drawParticles(time, lastDraw ? Math.min((time - lastDraw) / 1000, .07) : .032);
+      lastDraw = time;
+    }
+    if (context || pointer.active) frame = requestAnimationFrame(paintScene);
+  }
+
+  function startScene() {
+    if (!frame && motionAllowed() && !document.hidden) frame = requestAnimationFrame(paintScene);
+  }
+
+  function clearPointer() {
+    pointer.active = false;
+    root.classList.remove("pointer-active", "pointer-interactive");
+    orbs.style.removeProperty("transform");
+    portrait?.style.removeProperty("--portrait-x");
+    portrait?.style.removeProperty("--portrait-y");
+    portrait?.style.removeProperty("--portrait-rotate");
+  }
+
+  function syncScene() {
+    cancelAnimationFrame(frame);
+    frame = 0;
+    previousTime = lastDraw = 0;
+    clearPointer();
+    if (motionAllowed() && !document.hidden) startScene();
+  }
+
+  window.addEventListener("pointermove", (event) => {
+    if (!motionAllowed() || !finePointer.matches || event.pointerType === "touch" || document.body.classList.contains("dialog-open")) return;
+    if (!pointer.active) {
+      pointer.smoothX = event.clientX;
+      pointer.smoothY = event.clientY;
+    }
+    pointer.x = event.clientX;
+    pointer.y = event.clientY;
+    pointer.active = true;
+    root.classList.add("pointer-active");
+    root.classList.toggle("pointer-interactive", Boolean(event.target?.closest?.("a, button")));
+    startScene();
+  }, { passive: true });
+  document.documentElement.addEventListener("pointerleave", clearPointer);
+  window.addEventListener("blur", clearPointer);
+  document.addEventListener("keydown", (event) => { if (event.key === "Tab" || event.key === "Escape") clearPointer(); });
+  document.addEventListener("portfolio:motionchange", syncScene);
+  document.addEventListener("visibilitychange", syncScene);
+  finePointer.addEventListener("change", () => { resizeScene(); syncScene(); });
+  let resizeFrame = 0;
+  window.addEventListener("resize", () => {
+    if (!resizeFrame) resizeFrame = requestAnimationFrame(() => { resizeFrame = 0; resizeScene(); });
+  }, { passive: true });
+  if (portrait && typeof IntersectionObserver === "function") {
+    const observer = new IntersectionObserver(([entry]) => { portraitVisible = entry.isIntersecting; });
+    observer.observe(portrait);
+  }
+  resizeScene();
+  syncScene();
+}
+
+// Magnetic motion has a small travel distance so targets remain easy to click.
+function setupMagneticButtons() {
+  document.querySelectorAll(".btn, .whatsapp-fab").forEach((button) => {
+    let frame = 0;
+    let point;
+    button.classList.add("magnetic-ready");
+    const reset = () => {
+      cancelAnimationFrame(frame);
+      frame = 0;
+      button.style.removeProperty("--magnet-x");
+      button.style.removeProperty("--magnet-y");
+    };
+    button.addEventListener("pointermove", (event) => {
+      if (!motionAllowed() || !finePointer.matches || event.pointerType === "touch") return;
+      point = { x: event.clientX, y: event.clientY };
+      if (frame) return;
+      frame = requestAnimationFrame(() => {
+        frame = 0;
+        if (!motionAllowed() || !finePointer.matches) return;
+        const bounds = button.getBoundingClientRect();
+        const clamp = (value) => Math.max(-5, Math.min(5, value * .12));
+        button.style.setProperty("--magnet-x", `${clamp(point.x - bounds.left - bounds.width / 2).toFixed(1)}px`);
+        button.style.setProperty("--magnet-y", `${clamp(point.y - bounds.top - bounds.height / 2).toFixed(1)}px`);
+      });
+    }, { passive: true });
+    button.addEventListener("pointerleave", reset);
+    button.addEventListener("pointercancel", reset);
+    button.addEventListener("blur", reset);
+    window.addEventListener("blur", reset);
+    finePointer.addEventListener("change", reset);
+    document.addEventListener("portfolio:motionchange", reset);
+  });
+}
+
+// Section accents pause offscreen. The observer does not hide any content.
+function setupSectionMotion() {
+  const sections = document.querySelectorAll(".section, .gallery-header, .gallery-main, .footer");
+  if (typeof IntersectionObserver !== "function") {
+    sections.forEach((section) => section.classList.add("is-in-view"));
+    return;
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => entry.target.classList.toggle("is-in-view", entry.isIntersecting));
+  }, { threshold: 0 });
+  sections.forEach((section) => observer.observe(section));
+}
+
+setupMagneticButtons();
+setupSectionMotion();
+createAmbientScene();
