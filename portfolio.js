@@ -60,7 +60,7 @@ const revealSelector = [
   ".section-heading", ".section-intro", ".about-copy", ".facts",
   ".work-card", ".project-heading", ".project-detail",
   ".career-grid > div > .eyebrow", ".career-grid > div > h2",
-  ".timeline-item", ".education-list > li", ".skill-group", ".strengths",
+  ".timeline-item", ".education-list > li", ".skills-overview", ".skill-group", ".strengths",
   ".service", ".contact-grid > div", ".contact-details", ".gallery-item", ".gallery-contact", ".footer-inner",
 ].join(",");
 
@@ -507,3 +507,104 @@ function setupSectionMotion() {
 setupMagneticButtons();
 setupSectionMotion();
 createAmbientScene();
+
+// The donut represents listed skill entries, not invented proficiency ratings.
+function setupSkillsChart() {
+  const chart = document.querySelector("[data-skills-chart]");
+  if (!chart) return;
+  const groups = [...document.querySelectorAll("[data-skill-group]")];
+  const categories = groups.map((group) => ({
+    id: group.dataset.skillGroup,
+    name: group.querySelector("h3").textContent,
+    count: group.querySelectorAll("li").length,
+    element: group,
+  }));
+  const total = categories.reduce((sum, category) => sum + category.count, 0);
+  if (!total) return;
+  const controls = [...chart.querySelectorAll("[data-skill-select]")];
+  const slices = [...chart.querySelectorAll(".skill-slice")];
+  const count = chart.querySelector("[data-skill-count]");
+  const caption = chart.querySelector("[data-skill-caption]");
+  const readout = chart.querySelector(".skill-chart-readout");
+  const reset = chart.querySelector("[data-skill-reset]");
+  let selected = null;
+  let played = false;
+  let readoutAnimation;
+  let offset = 0;
+  categories.forEach((category) => {
+    const slice = slices.find((element) => element.dataset.skillSelect === category.id);
+    const share = category.count / total * 100;
+    const gap = Math.min(4, share * .18);
+    if (slice) {
+      const length = (share - gap).toFixed(3);
+      slice.setAttribute("stroke-dasharray", `${length} ${(100 - Number(length)).toFixed(3)}`);
+      slice.setAttribute("stroke-dashoffset", String(-(offset + gap / 2)));
+      slice.dataset.arcLength = length;
+      slice.style.visibility = category.count ? "visible" : "hidden";
+    }
+    offset += share;
+    controls.filter((control) => control.dataset.skillSelect === category.id).forEach((control) => {
+      control.setAttribute("aria-label", `Highlight ${category.name}, ${category.count} listed skills`);
+      const label = control.querySelector(".skill-option-count");
+      if (label) label.textContent = `${category.count} skills`;
+    });
+  });
+  count.textContent = String(total);
+  caption.textContent = `Across ${categories.length} areas`;
+
+  function selectCategory(id) {
+    const category = categories.find((item) => item.id === id);
+    selected = category ? category.id : null;
+    chart.classList.toggle("has-selection", Boolean(category));
+    controls.forEach((control) => control.setAttribute("aria-pressed", String(control.dataset.skillSelect === selected)));
+    reset.setAttribute("aria-pressed", String(!category));
+    categories.forEach((item) => item.element.classList.toggle("is-skill-active", item.id === selected));
+    count.textContent = String(category ? category.count : total);
+    caption.textContent = category ? category.name : `Across ${categories.length} areas`;
+    readoutAnimation?.cancel();
+    readoutAnimation = animateElement(readout, [
+      { opacity: .4, transform: "scale(.94)" }, { opacity: 1, transform: "scale(1)" },
+    ], { duration: 280 });
+    category?.element.querySelectorAll("li").forEach((item, index) => animateElement(item, [
+      { opacity: .5, transform: "translateX(-7px)" }, { opacity: 1, transform: "translateX(0)" },
+    ], { delay: index * 45, duration: 340 }));
+  }
+
+  controls.forEach((control) => {
+    const choose = () => selectCategory(selected === control.dataset.skillSelect ? null : control.dataset.skillSelect);
+    control.addEventListener("click", choose);
+    if (control.tagName.toLowerCase() === "circle") {
+      control.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        choose();
+      });
+    }
+  });
+  reset.addEventListener("click", () => selectCategory(null));
+
+  function revealChart() {
+    if (played || !motionAllowed() || !chart.classList.contains("is-in-view")) return;
+    played = true;
+    slices.forEach((slice, index) => animateElement(slice, [
+      { strokeDasharray: "0 100", opacity: .4 },
+      { strokeDasharray: slice.getAttribute("stroke-dasharray"), opacity: 1 },
+    ], { duration: 950, delay: index * 120 }));
+    animateElement(readout, [
+      { opacity: .25, transform: "scale(.88)" }, { opacity: 1, transform: "scale(1)" },
+    ], { duration: 700, delay: 200 });
+  }
+  if (typeof IntersectionObserver === "function") {
+    const observer = new IntersectionObserver(([entry]) => {
+      chart.classList.toggle("is-in-view", entry.isIntersecting);
+      revealChart();
+    }, { threshold: .25 });
+    observer.observe(chart);
+  } else {
+    chart.classList.add("is-in-view");
+    revealChart();
+  }
+  document.addEventListener("portfolio:motionchange", revealChart);
+}
+
+setupSkillsChart();
