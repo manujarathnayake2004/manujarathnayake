@@ -16,7 +16,7 @@ jobs:
       - name: Rebuild CV
         shell: bash
         run: |
-          cat cv_chunks/*.part | tr -d '\n' | base64 -d > Manuja_Rathnayake_CV.pdf
+          cat cv_chunks/all.part | tr -d '\n' | base64 -d | xz -d > Manuja_Rathnayake_CV.pdf
           test -s Manuja_Rathnayake_CV.pdf
           file Manuja_Rathnayake_CV.pdf
       - name: Commit updated CV
