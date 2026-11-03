@@ -608,3 +608,101 @@ function setupSkillsChart() {
 }
 
 setupSkillsChart();
+
+
+// Hero name reveal inspired by numeric-to-name portfolio intros.
+// The final accessible name is always available in the HTML and the effect is decorative.
+function setupHeroNameScramble() {
+  const name = document.querySelector("[data-name-scramble]");
+  if (!name) return;
+
+  const finalText = "Manuja\nRathnayake.";
+  const digit = () => String(Math.floor(Math.random() * 10));
+  const revealable = [...finalText].reduce((count, char) => count + (char !== "\n" ? 1 : 0), 0);
+  let animationFrame = 0;
+  let startTime = 0;
+  let lastPaint = 0;
+  let replayTimer = 0;
+
+  function showFinal() {
+    cancelAnimationFrame(animationFrame);
+    animationFrame = 0;
+    clearTimeout(replayTimer);
+    name.textContent = finalText;
+    name.classList.remove("is-scrambling");
+  }
+
+  function paint(time) {
+    if (!motionAllowed() || document.hidden) {
+      showFinal();
+      return;
+    }
+
+    const elapsed = time - startTime;
+    const progress = Math.min(1, elapsed / 1550);
+
+    if (time - lastPaint >= 34 || progress >= 1) {
+      lastPaint = time;
+      let visibleIndex = 0;
+      let output = "";
+
+      for (const char of finalText) {
+        if (char === "\n") {
+          output += "\n";
+          continue;
+        }
+
+        const lockPoint = (visibleIndex / Math.max(1, revealable - 1)) * 0.78;
+        const settled = progress >= lockPoint + 0.16;
+
+        if (settled) {
+          output += char;
+        } else if (char === " " || char === ".") {
+          output += char;
+        } else {
+          output += digit();
+        }
+        visibleIndex += 1;
+      }
+
+      name.textContent = output;
+    }
+
+    if (progress < 1) {
+      animationFrame = requestAnimationFrame(paint);
+    } else {
+      showFinal();
+    }
+  }
+
+  function play() {
+    cancelAnimationFrame(animationFrame);
+    clearTimeout(replayTimer);
+
+    if (!motionAllowed()) {
+      showFinal();
+      return;
+    }
+
+    name.classList.add("is-scrambling");
+    name.textContent = "000000\n0000000000.";
+    startTime = performance.now();
+    lastPaint = 0;
+    animationFrame = requestAnimationFrame(paint);
+  }
+
+  // Small delay lets the hero entrance begin before the numeric reveal.
+  replayTimer = window.setTimeout(play, 220);
+
+  // Re-run when the user turns portfolio motion back on.
+  document.addEventListener("portfolio:motionchange", () => {
+    if (motionAllowed()) play();
+    else showFinal();
+  });
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) showFinal();
+  });
+}
+
+setupHeroNameScramble();
