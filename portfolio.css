@@ -396,3 +396,27 @@ html.motion-paused { scroll-behavior: auto; }
   .ambient-scene, .pointer-halo, .motion-toggle, .whatsapp-fab { display: none !important; }
   .hero .accent { color: var(--accent); -webkit-text-fill-color: var(--accent); background: none; }
 }
+
+
+/* Numeric-to-name hero reveal */
+.hero-scramble-name {
+  display: inline-block;
+  min-width: 10.2ch;
+  white-space: pre-line;
+  font-variant-numeric: tabular-nums;
+  transform-origin: left center;
+}
+.hero-scramble-name.is-scrambling {
+  filter: drop-shadow(0 0 9px rgba(53,168,255,.34));
+}
+.motion-enabled .hero-scramble-name.is-scrambling {
+  animation: hero-name-signal .16s steps(2,end) infinite;
+}
+@keyframes hero-name-signal {
+  0%,100% { opacity: 1; transform: translateX(0); }
+  45% { opacity: .88; transform: translateX(.5px); }
+  55% { opacity: .96; transform: translateX(-.5px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-scramble-name { filter: none !important; }
+}
