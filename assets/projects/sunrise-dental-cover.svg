@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" role="img" aria-labelledby="t d">
+<title id="t">Sunrise Dental Clinic project cover</title><desc id="d">Stylised dental appointment management application visual</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#081421"/><stop offset=".55" stop-color="#132c3b"/><stop offset="1" stop-color="#0b1727"/></linearGradient><linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#8b91ff"/><stop offset="1" stop-color="#35a8ff"/></linearGradient></defs>
+<rect width="1280" height="800" rx="34" fill="url(#bg)"/>
+<circle cx="1100" cy="130" r="210" fill="#8b91ff" opacity=".075"/><circle cx="170" cy="660" r="240" fill="#35a8ff" opacity=".055"/>
+<rect x="82" y="92" width="1116" height="616" rx="28" fill="#0d1b2d" stroke="#344d73" stroke-width="2"/>
+<rect x="82" y="92" width="1116" height="72" rx="28" fill="#13233b"/>
+<text x="126" y="139" fill="#f0f4ff" font-family="Arial,sans-serif" font-size="28" font-weight="700">Sunrise Dental Clinic</text>
+<rect x="120" y="205" width="390" height="450" rx="20" fill="#10243a"/><text x="150" y="248" fill="#aeb7ff" font-family="Arial,sans-serif" font-size="18" font-weight="700">TODAY'S APPOINTMENTS</text>
+<g font-family="Arial,sans-serif"><rect x="150" y="285" width="330" height="80" rx="14" fill="#152f49"/><text x="174" y="318" fill="#eef5ff" font-size="18" font-weight="700">09:30  Patient appointment</text><text x="174" y="345" fill="#8fa7c4" font-size="15">Dentist A · Cleaning</text>
+<rect x="150" y="386" width="330" height="80" rx="14" fill="#152f49"/><text x="174" y="419" fill="#eef5ff" font-size="18" font-weight="700">11:00  Patient appointment</text><text x="174" y="446" fill="#8fa7c4" font-size="15">Dentist B · Consultation</text>
+<rect x="150" y="487" width="330" height="80" rx="14" fill="#152f49"/><text x="174" y="520" fill="#eef5ff" font-size="18" font-weight="700">14:30  Patient appointment</text><text x="174" y="547" fill="#8fa7c4" font-size="15">Dentist A · Treatment</text></g>
+<rect x="550" y="205" width="580" height="210" rx="20" fill="#10243a"/><text x="585" y="250" fill="#aeb7ff" font-family="Arial,sans-serif" font-size="18" font-weight="700">CLINIC OVERVIEW</text>
+<rect x="585" y="285" width="155" height="92" rx="14" fill="#152f49"/><text x="610" y="320" fill="#8fd0ff" font-family="Arial,sans-serif" font-size="15">Patients</text><text x="610" y="355" fill="#ffffff" font-family="Arial,sans-serif" font-size="34" font-weight="700">128</text>
+<rect x="765" y="285" width="155" height="92" rx="14" fill="#152f49"/><text x="790" y="320" fill="#8fd0ff" font-family="Arial,sans-serif" font-size="15">Today</text><text x="790" y="355" fill="#ffffff" font-family="Arial,sans-serif" font-size="34" font-weight="700">12</text>
+<rect x="945" y="285" width="155" height="92" rx="14" fill="#152f49"/><text x="970" y="320" fill="#8fd0ff" font-family="Arial,sans-serif" font-size="15">Billing</text><circle cx="1020" cy="350" r="17" fill="none" stroke="url(#a)" stroke-width="7"/><path d="M1020 333v34M1008 342h18M1008 358h18" stroke="#d9e9ff" stroke-width="3"/>
+<rect x="550" y="455" width="580" height="200" rx="20" fill="#10243a"/><text x="585" y="500" fill="#dcecff" font-family="Arial,sans-serif" font-size="18" font-weight="700">Secure workflow</text>
+<path d="M610 570h130M800 570h130M990 570h70" stroke="#355779" stroke-width="6" stroke-linecap="round"/><circle cx="610" cy="570" r="19" fill="#8b91ff"/><circle cx="800" cy="570" r="19" fill="#35a8ff"/><circle cx="990" cy="570" r="19" fill="#65dfcb"/>
+<text x="95" y="758" fill="#91aed0" font-family="Arial,sans-serif" font-size="22">Java · Spring Boot · MySQL · REST billing service</text></svg>
