@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="800" viewBox="0 0 1280 800" role="img" aria-labelledby="t d">
+<title id="t">AquaLux Auto Spa project cover</title><desc id="d">Stylised vehicle wash management dashboard visual</desc>
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07111f"/><stop offset=".55" stop-color="#102640"/><stop offset="1" stop-color="#0a1727"/></linearGradient><linearGradient id="a" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#35a8ff"/><stop offset="1" stop-color="#65dfcb"/></linearGradient></defs>
+<rect width="1280" height="800" rx="34" fill="url(#bg)"/>
+<circle cx="1090" cy="110" r="190" fill="#35a8ff" opacity=".08"/><circle cx="190" cy="700" r="250" fill="#65dfcb" opacity=".055"/>
+<rect x="82" y="92" width="1116" height="616" rx="28" fill="#0d1b2e" stroke="#2f5b7b" stroke-width="2"/>
+<rect x="82" y="92" width="1116" height="72" rx="28" fill="#13253d"/><circle cx="130" cy="128" r="8" fill="#65dfcb"/><circle cx="158" cy="128" r="8" fill="#35a8ff"/><circle cx="186" cy="128" r="8" fill="#7f8ca2"/>
+<text x="230" y="139" fill="#eaf5ff" font-family="Arial,sans-serif" font-size="28" font-weight="700">AquaLux Auto Spa</text>
+<rect x="120" y="205" width="250" height="450" rx="20" fill="#10233a"/><text x="152" y="254" fill="#8fd0ff" font-family="Arial,sans-serif" font-size="18" font-weight="700">ADMIN DASHBOARD</text>
+<rect x="150" y="290" width="190" height="16" rx="8" fill="#25445e"/><rect x="150" y="335" width="155" height="16" rx="8" fill="#25445e"/><rect x="150" y="380" width="175" height="16" rx="8" fill="#25445e"/><rect x="150" y="425" width="140" height="16" rx="8" fill="#25445e"/>
+<rect x="410" y="205" width="220" height="135" rx="18" fill="#102b42" stroke="#285a79"/><text x="438" y="246" fill="#90d6ff" font-family="Arial,sans-serif" font-size="18">Bookings</text><text x="438" y="307" fill="#ffffff" font-family="Arial,sans-serif" font-size="48" font-weight="700">24</text>
+<rect x="660" y="205" width="220" height="135" rx="18" fill="#102b42" stroke="#285a79"/><text x="688" y="246" fill="#90d6ff" font-family="Arial,sans-serif" font-size="18">Payments</text><text x="688" y="307" fill="#ffffff" font-family="Arial,sans-serif" font-size="40" font-weight="700">LKR</text>
+<rect x="910" y="205" width="220" height="135" rx="18" fill="#102b42" stroke="#285a79"/><text x="938" y="246" fill="#90d6ff" font-family="Arial,sans-serif" font-size="18">AI Advisor</text><path d="M963 294c27-54 79-55 110-6" fill="none" stroke="url(#a)" stroke-width="10" stroke-linecap="round"/><circle cx="1019" cy="291" r="12" fill="#65dfcb"/>
+<rect x="410" y="382" width="720" height="273" rx="20" fill="#0f2238" stroke="#285a79"/><text x="444" y="425" fill="#dff3ff" font-family="Arial,sans-serif" font-size="20" font-weight="700">Weekly demand and booking activity</text>
+<path d="M456 589L534 540L612 566L690 474L768 520L846 430L924 458L1018 405L1084 442" fill="none" stroke="url(#a)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<g fill="#35a8ff"><circle cx="534" cy="540" r="7"/><circle cx="690" cy="474" r="7"/><circle cx="846" cy="430" r="7"/><circle cx="1018" cy="405" r="7"/></g>
+<text x="95" y="758" fill="#7fb6d5" font-family="Arial,sans-serif" font-size="22">Python · Flask · SQLite · AI-assisted vehicle care</text></svg>
