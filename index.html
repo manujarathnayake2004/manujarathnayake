@@ -20,6 +20,140 @@
   <link rel="stylesheet" href="portfolio.css?v=20261106-whatsappbot2">
   <link rel="stylesheet" href="project-showcase.css?v=20261103">
   <script src="portfolio.js?v=20261103-name1" defer></script>
+<style id="mr-wa-assistant-style">
+.mr-wa-assistant{
+  position:fixed;right:22px;bottom:20px;z-index:80;
+  width:306px;height:94px;display:block;
+  color:#f4f8ff;text-decoration:none;
+  font-family:"Poppins",sans-serif;
+  filter:drop-shadow(0 18px 28px rgba(0,0,0,.42));
+  isolation:isolate;
+}
+.mr-wa-panel{
+  position:absolute;left:0;top:9px;width:245px;height:78px;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:11px 68px 11px 17px;box-sizing:border-box;
+  border:1px solid rgba(75,188,255,.72);border-radius:16px;
+  background:
+    linear-gradient(112deg,rgba(10,17,31,.99),rgba(12,27,48,.98)),
+    #0a111f;
+  box-shadow:
+    inset 0 0 0 1px rgba(165,225,255,.045),
+    0 0 19px rgba(53,168,255,.24),
+    0 0 42px rgba(83,89,239,.11);
+  overflow:hidden;
+}
+.mr-wa-panel::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(110deg,transparent 20%,rgba(131,220,255,.10) 44%,rgba(139,117,247,.11) 55%,transparent 80%);
+  transform:translateX(-120%);
+  animation:mrWaSweep 5.4s ease-in-out infinite;
+}
+.mr-wa-panel::after{
+  content:"";position:absolute;left:15px;right:39px;bottom:0;height:2px;
+  background:linear-gradient(90deg,transparent,#35a8ff 25%,#8b75f7 72%,transparent);
+  box-shadow:0 0 12px rgba(53,168,255,.72);
+}
+.mr-wa-heading{
+  position:relative;z-index:2;
+  display:flex;align-items:center;gap:9px;
+  font-size:18px;font-weight:800;line-height:1.05;
+  letter-spacing:-.025em;white-space:nowrap;
+}
+.mr-wa-icon{
+  width:27px;height:27px;display:grid;place-items:center;flex:0 0 27px;
+}
+.mr-wa-icon svg{
+  display:block;width:27px!important;height:27px!important;
+  fill:#eafff6!important;
+  filter:drop-shadow(0 0 8px rgba(111,246,188,.30));
+}
+.mr-wa-sub{
+  position:relative;z-index:2;margin:4px 0 0 36px;
+  color:#b4c7df;font-size:9px;font-weight:500;line-height:1.2;white-space:nowrap;
+}
+.mr-wa-online{
+  position:relative;z-index:2;margin:5px 0 0 36px;
+  display:flex;align-items:center;gap:5px;
+  color:#7f96b5;font-size:7px;font-weight:600;text-transform:uppercase;letter-spacing:.11em;
+}
+.mr-wa-online i{
+  width:5px;height:5px;border-radius:50%;background:#65e7ae;
+  box-shadow:0 0 8px rgba(101,231,174,.8);
+}
+.mr-wa-robot{
+  position:absolute;right:-2px;bottom:-9px;width:94px;height:118px;
+  z-index:4;display:block;transform-origin:52% 86%;
+  animation:mrBotFloat 4.1s ease-in-out infinite;
+}
+.mr-wa-robot svg{
+  display:block;width:100%!important;height:100%!important;overflow:visible;
+  filter:drop-shadow(0 8px 7px rgba(0,0,0,.52));
+}
+.mr-wa-robot .mr-bot-eye{
+  transform-box:fill-box;transform-origin:center;
+  animation:mrBotBlink 5.6s infinite;
+}
+.mr-wa-robot .mr-bot-core{
+  animation:mrBotCore 2.8s ease-in-out infinite;
+}
+.mr-wa-robot .mr-bot-antenna{
+  animation:mrBotAntenna 2.3s ease-in-out infinite;
+}
+.mr-wa-assistant:hover .mr-wa-panel,
+.mr-wa-assistant:focus-visible .mr-wa-panel{
+  border-color:rgba(145,231,255,.98);
+  box-shadow:
+    inset 0 0 0 1px rgba(165,225,255,.08),
+    0 0 25px rgba(53,168,255,.36),
+    0 0 50px rgba(139,117,247,.16);
+}
+.mr-wa-assistant:hover .mr-wa-robot,
+.mr-wa-assistant:focus-visible .mr-wa-robot{
+  animation:none;transform:translateY(-5px) rotate(-2deg) scale(1.035);
+  transition:transform .25s ease;
+}
+.mr-wa-assistant:focus-visible{outline:2px solid #91e7ff;outline-offset:6px;border-radius:18px}
+@keyframes mrWaSweep{
+  0%,58%{transform:translateX(-120%)}
+  78%,100%{transform:translateX(120%)}
+}
+@keyframes mrBotFloat{
+  0%,100%{transform:translateY(0) rotate(0)}
+  50%{transform:translateY(-5px) rotate(1.2deg)}
+}
+@keyframes mrBotBlink{
+  0%,44%,48%,100%{transform:scaleY(1)}
+  46%{transform:scaleY(.08)}
+}
+@keyframes mrBotCore{
+  0%,100%{filter:drop-shadow(0 0 2px rgba(53,168,255,.4))}
+  50%{filter:drop-shadow(0 0 9px rgba(145,231,255,.95))}
+}
+@keyframes mrBotAntenna{
+  0%,100%{filter:drop-shadow(0 0 1px rgba(145,231,255,.4))}
+  50%{filter:drop-shadow(0 0 8px rgba(145,231,255,1))}
+}
+@media(max-width:680px){
+  .mr-wa-assistant{right:10px;bottom:12px;width:250px;height:82px}
+  .mr-wa-panel{top:8px;width:202px;height:66px;padding:9px 55px 9px 13px;border-radius:14px}
+  .mr-wa-heading{gap:7px;font-size:15px}
+  .mr-wa-icon,.mr-wa-icon svg{width:23px!important;height:23px!important}
+  .mr-wa-icon{flex-basis:23px}
+  .mr-wa-sub{margin-left:30px;margin-top:3px;font-size:7.8px}
+  .mr-wa-online{margin-left:30px;margin-top:4px;font-size:6px}
+  .mr-wa-robot{right:-2px;bottom:-8px;width:78px;height:99px}
+}
+@media(max-width:360px){
+  .mr-wa-assistant{right:7px;bottom:10px;transform:scale(.92);transform-origin:right bottom}
+}
+@media(prefers-reduced-motion:reduce){
+  .mr-wa-panel::before,.mr-wa-robot,.mr-wa-robot .mr-bot-eye,.mr-wa-robot .mr-bot-core,.mr-wa-robot .mr-bot-antenna{animation:none!important}
+}
+@media print{
+  .mr-wa-assistant{display:none!important}
+}
+</style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -237,52 +371,72 @@
     <a href="Manuja_Rathnayake_CV.pdf" download>Download my CV</a>
   </div>
 </footer>
-<a class="whatsapp-fab whatsapp-bot" href="https://wa.me/94755004526" target="_blank" rel="noopener noreferrer" aria-label="Chat with Manuja on WhatsApp">
-  <span class="whatsapp-bot-copy" aria-hidden="true">
-    <span class="whatsapp-bot-title">
-      <svg class="whatsapp-bot-wa" viewBox="0 0 32 32"><path d="M16.001 3.2c-7.03 0-12.8 5.77-12.8 12.8 0 2.257.59 4.378 1.622 6.218L3.2 28.8l6.75-1.764A12.75 12.75 0 0 0 16 28.8c7.03 0 12.8-5.77 12.8-12.8S23.03 3.2 16 3.2zm0 1.6c6.176 0 11.2 5.024 11.2 11.2 0 6.176-5.024 11.2-11.2 11.2-2.01 0-3.897-.538-5.522-1.475l-.393-.225-4.017 1.049 1.074-3.902-.257-.4A11.161 11.161 0 0 1 4.8 16c0-6.176 5.024-11.2 11.2-11.2zm5.517 15.58c-.301-.15-1.773-.873-2.05-.972-.277-.101-.48-.15-.684.15-.202.3-.785.972-.962 1.173-.177.2-.355.225-.656.075-.301-.15-1.264-.466-2.403-1.486-.888-.792-1.486-1.77-1.662-2.07-.177-.3-.02-.462.133-.612.137-.136.301-.355.451-.532.15-.177.2-.3.301-.5.1-.2.05-.375-.025-.525-.075-.15-.684-1.65-.937-2.26-.247-.593-.498-.513-.684-.523l-.584-.01c-.2 0-.525.075-.8.375-.275.3-1.05 1.025-1.05 2.5s1.075 2.9 1.225 3.1c.15.2 2.117 3.231 5.133 4.532.718.31 1.277.495 1.713.633.72.229 1.377.197 1.896.12.579-.086 1.773-.724 2.024-1.423.25-.698.25-1.297.175-1.422-.075-.125-.275-.2-.576-.35z"/></svg>
+<a class="mr-wa-assistant" href="https://wa.me/94755004526" target="_blank" rel="noopener noreferrer" aria-label="Chat with Manuja on WhatsApp">
+  <span class="mr-wa-panel">
+    <span class="mr-wa-heading">
+      <span class="mr-wa-icon" aria-hidden="true">
+        <svg viewBox="0 0 32 32"><path d="M16 3.2A12.8 12.8 0 0 0 5.01 22.56L3.2 28.8l6.39-1.68A12.8 12.8 0 1 0 16 3.2Zm0 23.2c-2.03 0-3.94-.59-5.55-1.61l-.4-.25-3.79.99 1.01-3.69-.26-.41A10.4 10.4 0 1 1 16 26.4Zm5.7-7.78c-.31-.16-1.84-.91-2.13-1.01-.28-.11-.49-.16-.7.15-.21.31-.81 1.01-1 1.21-.18.21-.36.23-.68.08-.31-.16-1.31-.49-2.5-1.54-.92-.82-1.54-1.84-1.72-2.15-.18-.31-.02-.48.14-.64.14-.14.31-.36.47-.55.15-.18.2-.31.31-.52.1-.21.05-.39-.03-.55-.08-.15-.7-1.68-.96-2.3-.25-.61-.51-.53-.7-.54h-.6c-.21 0-.55.08-.84.39-.28.31-1.09 1.06-1.09 2.59 0 1.52 1.11 2.99 1.27 3.2.15.21 2.19 3.35 5.31 4.69.74.32 1.32.51 1.77.65.74.24 1.42.2 1.96.12.6-.09 1.84-.75 2.1-1.47.26-.72.26-1.34.18-1.47-.08-.13-.29-.21-.6-.36Z"/></svg>
+      </span>
       <span>Need Help?</span>
     </span>
-    <span class="whatsapp-bot-subtitle">Chat with me on WhatsApp</span>
+    <span class="mr-wa-sub">Chat with me on WhatsApp</span>
+    <span class="mr-wa-online"><i></i> Online</span>
   </span>
-  <span class="whatsapp-bot-robot" aria-hidden="true">
-    <svg viewBox="0 0 92 116" role="img">
+
+  <span class="mr-wa-robot" aria-hidden="true">
+    <svg viewBox="0 0 116 146">
       <defs>
-        <linearGradient id="botBody" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#14233c"/>
-          <stop offset=".55" stop-color="#0b1428"/>
-          <stop offset="1" stop-color="#182447"/>
+        <linearGradient id="mrBotShell" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#1b2d48"/>
+          <stop offset=".48" stop-color="#0b1426"/>
+          <stop offset="1" stop-color="#25335a"/>
         </linearGradient>
-        <linearGradient id="botGlow" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#7ddcff"/>
-          <stop offset=".52" stop-color="#35a8ff"/>
+        <linearGradient id="mrBotEdge" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#91e7ff"/>
+          <stop offset=".45" stop-color="#35a8ff"/>
           <stop offset="1" stop-color="#8b75f7"/>
         </linearGradient>
-        <filter id="botAura" x="-80%" y="-80%" width="260%" height="260%">
-          <feGaussianBlur stdDeviation="3.8"/>
+        <linearGradient id="mrBotCore" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#a6edff"/>
+          <stop offset=".55" stop-color="#35a8ff"/>
+          <stop offset="1" stop-color="#9d78ff"/>
+        </linearGradient>
+        <radialGradient id="mrBotFace" cx=".5" cy=".35" r=".8">
+          <stop offset="0" stop-color="#0b1628"/>
+          <stop offset="1" stop-color="#03070d"/>
+        </radialGradient>
+        <filter id="mrBotGlow" x="-70%" y="-70%" width="240%" height="240%">
+          <feGaussianBlur stdDeviation="4"/>
         </filter>
       </defs>
-      <ellipse cx="46" cy="109" rx="27" ry="5" fill="#35a8ff" opacity=".14" filter="url(#botAura)"/>
-      <path d="M46 9V3" stroke="#8fdcff" stroke-width="2.3" stroke-linecap="round"/>
-      <circle cx="46" cy="3" r="2.7" fill="#8fdcff"/>
-      <path d="M29 14 20 7l-6 5 8 11M63 14l9-7 6 5-8 11" fill="url(#botBody)" stroke="#3bb8ff" stroke-width="1.6"/>
-      <rect x="18" y="15" width="56" height="43" rx="18" fill="url(#botBody)" stroke="#3bb8ff" stroke-width="1.8"/>
-      <path d="M27 31c4-7 11-10 19-10s15 3 19 10v11c-4 7-11 10-19 10S31 49 27 42Z" fill="#050a12" stroke="#263d61"/>
-      <path class="bot-eye bot-eye-left" d="M33 35c2.7-3.4 6.1-3.4 8.7 0" fill="none" stroke="#7ddcff" stroke-width="2.8" stroke-linecap="round"/>
-      <path class="bot-eye bot-eye-right" d="M50 35c2.7-3.4 6.1-3.4 8.7 0" fill="none" stroke="#7ddcff" stroke-width="2.8" stroke-linecap="round"/>
-      <path d="M40 43c3.9 3.4 8.2 3.4 12 0" fill="none" stroke="#8b75f7" stroke-width="2" stroke-linecap="round"/>
-      <path d="M26 57 18 70l8 9 7-10M66 57l8 13-8 9-7-10" fill="url(#botBody)" stroke="#3bb8ff" stroke-width="1.6"/>
-      <rect x="28" y="56" width="36" height="35" rx="13" fill="url(#botBody)" stroke="#3bb8ff" stroke-width="1.8"/>
-      <path d="M35 62h22l4 11-8 12H39l-8-12Z" fill="#071120" stroke="#354d73"/>
-      <circle cx="46" cy="73" r="6.5" fill="#35a8ff" opacity=".16" filter="url(#botAura)"/>
-      <path d="M46 66.5 51 73l-5 6.5-5-6.5Z" fill="url(#botGlow)"/>
-      <path d="m35 89-9 11 8 7 10-12M57 89l9 11-8 7-10-12" fill="url(#botBody)" stroke="#3bb8ff" stroke-width="1.6"/>
-      <path d="M23 104h15l2 7H20ZM69 104H54l-2 7h20Z" fill="#0a1325" stroke="#8b75f7" stroke-width="1.4"/>
-      <circle cx="18" cy="72" r="3.8" fill="#8b75f7"/>
-      <circle cx="74" cy="72" r="3.8" fill="#8b75f7"/>
+
+      <ellipse cx="58" cy="137" rx="34" ry="6" fill="#35a8ff" opacity=".22" filter="url(#mrBotGlow)"/>
+      <path d="M58 14V6" stroke="#91e7ff" stroke-width="2.5" stroke-linecap="round"/>
+      <circle class="mr-bot-antenna" cx="58" cy="4.5" r="3.5" fill="#91e7ff"/>
+      <path d="M37 22 25 12l-8 7 11 15M79 22l12-10 8 7-11 15" fill="url(#mrBotShell)" stroke="url(#mrBotEdge)" stroke-width="2"/>
+
+      <g class="mr-bot-head">
+        <rect x="20" y="20" width="76" height="55" rx="23" fill="url(#mrBotShell)" stroke="url(#mrBotEdge)" stroke-width="2.2"/>
+        <rect x="27" y="28" width="62" height="38" rx="17" fill="url(#mrBotFace)" stroke="#243a5d" stroke-width="1.4"/>
+        <path class="mr-bot-eye" d="M37 44c3.6-4.5 8-4.5 11.5 0" fill="none" stroke="#91e7ff" stroke-width="3.4" stroke-linecap="round"/>
+        <path class="mr-bot-eye" d="M67.5 44c3.6-4.5 8-4.5 11.5 0" fill="none" stroke="#91e7ff" stroke-width="3.4" stroke-linecap="round"/>
+        <path d="M49 55c5.8 4.8 12.2 4.8 18 0" fill="none" stroke="#8b75f7" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="31" cy="26" r="2" fill="#bcefff" opacity=".8"/>
+      </g>
+
+      <path d="M34 73 19 91l9 13 11-14M82 73l15 18-9 13-11-14" fill="url(#mrBotShell)" stroke="url(#mrBotEdge)" stroke-width="2"/>
+      <circle cx="22" cy="96" r="5" fill="#101b32" stroke="#8b75f7" stroke-width="1.7"/>
+      <circle cx="94" cy="96" r="5" fill="#101b32" stroke="#35a8ff" stroke-width="1.7"/>
+
+      <rect x="36" y="72" width="44" height="44" rx="15" fill="url(#mrBotShell)" stroke="url(#mrBotEdge)" stroke-width="2.1"/>
+      <path d="M43 80h30l5 13-10 16H48L38 93Z" fill="#06101f" stroke="#2b446d" stroke-width="1.4"/>
+      <circle cx="58" cy="94" r="13" fill="#35a8ff" opacity=".16" filter="url(#mrBotGlow)"/>
+      <path class="mr-bot-core" d="m58 83 8 11-8 11-8-11Z" fill="url(#mrBotCore)"/>
+
+      <path d="m43 114-12 16 10 9 13-18M73 114l12 16-10 9-13-18" fill="url(#mrBotShell)" stroke="url(#mrBotEdge)" stroke-width="2"/>
+      <path d="M27 135h20l2 7H23ZM89 135H69l-2 7h26Z" fill="#091326" stroke="#8b75f7" stroke-width="1.7"/>
     </svg>
   </span>
-  <span class="whatsapp-bot-ping" aria-hidden="true"></span>
 </a>
 </body>
 </html>
