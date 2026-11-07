@@ -60,7 +60,7 @@
   bottom:7px;
   height:9px;
   border-radius:50%;
-  background:rgba(255,145,0,.22);
+  background:rgba(62,180,255,.24);
   filter:blur(8px);
   transform:scaleX(.85);
   z-index:-1;
@@ -75,27 +75,30 @@
   -webkit-user-drag:none;
   pointer-events:none;
   filter:
-    drop-shadow(0 0 5px rgba(255,150,30,.18))
-    drop-shadow(0 0 13px rgba(255,118,0,.10));
+    hue-rotate(172deg) saturate(1.22) brightness(1.03)
+    drop-shadow(0 0 5px rgba(72,186,255,.22))
+    drop-shadow(0 0 14px rgba(91,108,255,.14));
   transition:filter .22s ease,transform .22s ease;
 }
 .mr-wa-assistant:hover .mr-wa-robot-image,
 .mr-wa-assistant:focus-visible .mr-wa-robot-image{
   filter:
-    drop-shadow(0 0 7px rgba(255,186,65,.42))
-    drop-shadow(0 0 20px rgba(255,111,0,.24));
+    hue-rotate(172deg) saturate(1.28) brightness(1.06)
+    drop-shadow(0 0 8px rgba(103,216,255,.46))
+    drop-shadow(0 0 22px rgba(126,104,255,.25));
   transform:scale(1.035);
 }
 .mr-wa-assistant.is-near .mr-wa-robot-image{
   filter:
-    drop-shadow(0 0 7px rgba(255,183,61,.34))
-    drop-shadow(0 0 18px rgba(255,111,0,.18));
+    hue-rotate(172deg) saturate(1.25) brightness(1.04)
+    drop-shadow(0 0 7px rgba(92,207,255,.37))
+    drop-shadow(0 0 18px rgba(111,102,255,.20));
 }
 .mr-wa-assistant.is-tapped .mr-wa-robot-only{
   animation:mrBotTap .44s cubic-bezier(.18,.8,.25,1);
 }
 .mr-wa-assistant:focus-visible{
-  outline:2px solid #ff9f24;
+  outline:2px solid #69d8ff;
   outline-offset:7px;
   border-radius:22px;
 }
@@ -360,7 +363,7 @@
 </footer>
 <a class="mr-wa-assistant" href="https://wa.me/94755004526" target="_blank" rel="noopener noreferrer" aria-label="Chat with Manuja on WhatsApp">
   <span class="mr-wa-robot-only" aria-hidden="true">
-    <img class="mr-wa-robot-image" src="assets/whatsapp/manuja-orange-3d-bot.png?v=20261107bot2" alt="" width="370" height="675" decoding="async">
+    <img class="mr-wa-robot-image" src="assets/whatsapp/manuja-orange-3d-bot.png?v=20261107-bluebot1" alt="" width="370" height="675" decoding="async">
   </span>
 </a>
 </body>
