@@ -706,3 +706,130 @@ function setupHeroNameScramble() {
 }
 
 setupHeroNameScramble();
+
+// Interactive WhatsApp robot cursor tracking
+function setupWhatsAppRobotTracking() {
+  const widget = document.querySelector(".mr-wa-assistant");
+  const robot = widget?.querySelector(".mr-wa-robot");
+  if (!widget || !robot) return;
+
+  const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  let lastPointerMove = 0;
+  let frame = 0;
+  let greetingTimer = 0;
+
+  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+
+  function motionEnabledForBot() {
+    return !reducedMotion.matches &&
+      !document.documentElement.classList.contains("motion-paused") &&
+      !document.hidden;
+  }
+
+  function applyLook(x, y) {
+    widget.style.setProperty("--head-x", (x * 5.2).toFixed(2) + "px");
+    widget.style.setProperty("--head-y", (y * 3.7).toFixed(2) + "px");
+    widget.style.setProperty("--head-rot", (x * 5.3).toFixed(2) + "deg");
+    widget.style.setProperty("--eye-x", (x * 4.8).toFixed(2) + "px");
+    widget.style.setProperty("--eye-y", (y * 3.0).toFixed(2) + "px");
+    widget.style.setProperty("--body-ry", (x * 7.0).toFixed(2) + "deg");
+    widget.style.setProperty("--body-rx", (-y * 5.0).toFixed(2) + "deg");
+  }
+
+  function updateTarget(clientX, clientY) {
+    const rect = robot.getBoundingClientRect();
+    const centerX = rect.left + rect.width * 0.52;
+    const centerY = rect.top + rect.height * 0.38;
+    const dx = clientX - centerX;
+    const dy = clientY - centerY;
+
+    targetX = clamp(dx / Math.max(430, window.innerWidth * 0.48), -1, 1);
+    targetY = clamp(dy / Math.max(310, window.innerHeight * 0.48), -1, 1);
+
+    const distance = Math.hypot(dx, dy);
+    widget.classList.toggle("is-curious", distance < 390);
+    lastPointerMove = performance.now();
+  }
+
+  function onPointerMove(event) {
+    if (coarsePointer || !motionEnabledForBot()) return;
+    updateTarget(event.clientX, event.clientY);
+  }
+
+  function animate(time) {
+    if (!motionEnabledForBot()) {
+      currentX += (0 - currentX) * 0.12;
+      currentY += (0 - currentY) * 0.12;
+      applyLook(currentX, currentY);
+      frame = requestAnimationFrame(animate);
+      return;
+    }
+
+    const idle = coarsePointer || time - lastPointerMove > 2400;
+    let desiredX = targetX;
+    let desiredY = targetY;
+
+    if (idle) {
+      desiredX = Math.sin(time / 1850) * 0.24;
+      desiredY = Math.sin(time / 2350 + 1.25) * 0.14;
+      widget.classList.remove("is-curious");
+    }
+
+    currentX += (desiredX - currentX) * 0.09;
+    currentY += (desiredY - currentY) * 0.09;
+    applyLook(currentX, currentY);
+    frame = requestAnimationFrame(animate);
+  }
+
+  widget.addEventListener("pointerenter", (event) => {
+    if (!coarsePointer) updateTarget(event.clientX, event.clientY);
+    widget.classList.add("is-curious");
+  });
+
+  widget.addEventListener("pointerleave", () => {
+    widget.classList.remove("is-curious");
+  });
+
+  widget.addEventListener("pointerdown", (event) => {
+    if (motionEnabledForBot()) {
+      if (Number.isFinite(event.clientX) && Number.isFinite(event.clientY)) {
+        updateTarget(event.clientX, event.clientY);
+      }
+      widget.classList.remove("is-greeting");
+      void widget.offsetWidth;
+      widget.classList.add("is-greeting");
+      clearTimeout(greetingTimer);
+      greetingTimer = window.setTimeout(() => widget.classList.remove("is-greeting"), 700);
+    }
+  }, { passive: true });
+
+  window.addEventListener("pointermove", onPointerMove, { passive: true });
+  window.addEventListener("blur", () => {
+    targetX = 0;
+    targetY = 0;
+    widget.classList.remove("is-curious");
+  });
+
+  document.addEventListener("portfolio:motionchange", () => {
+    if (!motionEnabledForBot()) {
+      targetX = 0;
+      targetY = 0;
+      widget.classList.remove("is-curious");
+    }
+  });
+
+  frame = requestAnimationFrame(animate);
+
+  window.addEventListener("pagehide", () => {
+    cancelAnimationFrame(frame);
+    clearTimeout(greetingTimer);
+  }, { once: true });
+}
+
+setupWhatsAppRobotTracking();
+

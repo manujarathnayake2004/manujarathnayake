@@ -19,140 +19,140 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="portfolio.css?v=20261106-whatsappbot2">
   <link rel="stylesheet" href="project-showcase.css?v=20261103">
-  <script src="portfolio.js?v=20261103-name1" defer></script>
+  <script src="portfolio.js?v=20261107-botlook1" defer></script>
 <style id="mr-wa-assistant-style">
 .mr-wa-assistant{
-  position:fixed;right:22px;bottom:20px;z-index:80;
-  width:306px;height:94px;display:block;
-  color:#f4f8ff;text-decoration:none;
-  font-family:"Poppins",sans-serif;
-  filter:drop-shadow(0 18px 28px rgba(0,0,0,.42));
-  isolation:isolate;
+  --head-x:0px;--head-y:0px;--head-rot:0deg;
+  --eye-x:0px;--eye-y:0px;--body-rx:0deg;--body-ry:0deg;
+  position:fixed;right:20px;bottom:18px;z-index:80;
+  width:330px;height:118px;display:block;
+  color:#f6fbff;text-decoration:none;font-family:"Poppins",sans-serif;
+  isolation:isolate;perspective:700px;
+  filter:drop-shadow(0 18px 28px rgba(0,0,0,.45));
 }
 .mr-wa-panel{
-  position:absolute;left:0;top:9px;width:245px;height:78px;
+  position:absolute;left:0;top:22px;width:260px;height:82px;
   display:flex;flex-direction:column;justify-content:center;
-  padding:11px 68px 11px 17px;box-sizing:border-box;
-  border:1px solid rgba(75,188,255,.72);border-radius:16px;
+  padding:12px 82px 12px 18px;box-sizing:border-box;
+  border:1px solid rgba(79,190,255,.68);border-radius:18px;
   background:
-    linear-gradient(112deg,rgba(10,17,31,.99),rgba(12,27,48,.98)),
-    #0a111f;
+    radial-gradient(circle at 86% 18%,rgba(82,118,255,.16),transparent 34%),
+    linear-gradient(115deg,rgba(7,14,27,.99),rgba(11,27,48,.98));
   box-shadow:
-    inset 0 0 0 1px rgba(165,225,255,.045),
-    0 0 19px rgba(53,168,255,.24),
-    0 0 42px rgba(83,89,239,.11);
-  overflow:hidden;
+    inset 0 1px 0 rgba(204,239,255,.08),
+    inset 0 -1px 0 rgba(69,146,219,.08),
+    0 0 20px rgba(53,168,255,.23),
+    0 0 48px rgba(92,86,236,.10);
+  overflow:hidden;transition:border-color .28s ease,box-shadow .28s ease,transform .22s ease;
 }
 .mr-wa-panel::before{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(110deg,transparent 20%,rgba(131,220,255,.10) 44%,rgba(139,117,247,.11) 55%,transparent 80%);
-  transform:translateX(-120%);
-  animation:mrWaSweep 5.4s ease-in-out infinite;
+  content:"";position:absolute;inset:-1px;pointer-events:none;
+  background:linear-gradient(112deg,transparent 18%,rgba(150,226,255,.12) 42%,rgba(139,117,247,.12) 54%,transparent 76%);
+  transform:translateX(-125%);animation:mrWaSweep 5.2s ease-in-out infinite;
 }
 .mr-wa-panel::after{
-  content:"";position:absolute;left:15px;right:39px;bottom:0;height:2px;
-  background:linear-gradient(90deg,transparent,#35a8ff 25%,#8b75f7 72%,transparent);
-  box-shadow:0 0 12px rgba(53,168,255,.72);
+  content:"";position:absolute;left:16px;right:52px;bottom:0;height:2px;
+  background:linear-gradient(90deg,transparent,#35a8ff 26%,#8b75f7 74%,transparent);
+  box-shadow:0 0 13px rgba(53,168,255,.78);
 }
-.mr-wa-heading{
-  position:relative;z-index:2;
-  display:flex;align-items:center;gap:9px;
-  font-size:18px;font-weight:800;line-height:1.05;
-  letter-spacing:-.025em;white-space:nowrap;
-}
-.mr-wa-icon{
-  width:27px;height:27px;display:grid;place-items:center;flex:0 0 27px;
-}
-.mr-wa-icon svg{
-  display:block;width:27px!important;height:27px!important;
-  fill:#eafff6!important;
-  filter:drop-shadow(0 0 8px rgba(111,246,188,.30));
-}
-.mr-wa-sub{
-  position:relative;z-index:2;margin:4px 0 0 36px;
-  color:#b4c7df;font-size:9px;font-weight:500;line-height:1.2;white-space:nowrap;
-}
-.mr-wa-online{
-  position:relative;z-index:2;margin:5px 0 0 36px;
-  display:flex;align-items:center;gap:5px;
-  color:#7f96b5;font-size:7px;font-weight:600;text-transform:uppercase;letter-spacing:.11em;
-}
-.mr-wa-online i{
-  width:5px;height:5px;border-radius:50%;background:#65e7ae;
-  box-shadow:0 0 8px rgba(101,231,174,.8);
-}
+.mr-wa-heading{position:relative;z-index:2;display:flex;align-items:center;gap:9px;font-size:18px;font-weight:800;line-height:1.05;letter-spacing:-.025em;white-space:nowrap}
+.mr-wa-icon{width:28px;height:28px;display:grid;place-items:center;flex:0 0 28px}
+.mr-wa-icon svg{display:block;width:28px!important;height:28px!important;fill:#f4fff9!important;filter:drop-shadow(0 0 8px rgba(101,231,174,.28))}
+.mr-wa-sub{position:relative;z-index:2;margin:4px 0 0 37px;color:#b6c8df;font-size:9px;font-weight:500;line-height:1.2;white-space:nowrap}
+.mr-wa-online{position:relative;z-index:2;margin:6px 0 0 37px;display:flex;align-items:center;gap:5px;color:#8298b5;font-size:7px;font-weight:600;text-transform:uppercase;letter-spacing:.11em}
+.mr-wa-online i{width:5px;height:5px;border-radius:50%;background:#63e7ad;box-shadow:0 0 9px rgba(99,231,173,.9)}
+
 .mr-wa-robot{
-  position:absolute;right:-2px;bottom:-9px;width:94px;height:118px;
-  z-index:4;display:block;transform-origin:52% 86%;
-  animation:mrBotFloat 4.1s ease-in-out infinite;
+  position:absolute;right:-3px;bottom:-5px;width:122px;height:146px;
+  z-index:5;display:block;transform-origin:52% 88%;
+  animation:mr3dFloat 4.4s ease-in-out infinite;
+  pointer-events:none;
 }
-.mr-wa-robot svg{
-  display:block;width:100%!important;height:100%!important;overflow:visible;
-  filter:drop-shadow(0 8px 7px rgba(0,0,0,.52));
+.mr3d-model{
+  display:block;width:100%;height:100%;transform-style:preserve-3d;
+  transform:perspective(540px) rotateX(var(--body-rx)) rotateY(var(--body-ry));
+  transition:filter .25s ease;
 }
-.mr-wa-robot .mr-bot-eye{
+.mr-wa-robot svg{display:block;width:100%!important;height:100%!important;overflow:visible;filter:drop-shadow(0 10px 9px rgba(0,0,0,.55))}
+.mr3d-head{
   transform-box:fill-box;transform-origin:center;
-  animation:mrBotBlink 5.6s infinite;
+  transform:translate(var(--head-x),var(--head-y)) rotate(var(--head-rot));
+  transition:filter .2s ease;
 }
-.mr-wa-robot .mr-bot-core{
-  animation:mrBotCore 2.8s ease-in-out infinite;
+.mr3d-pupils{
+  transform-box:fill-box;transform-origin:center;
+  transform:translate(var(--eye-x),var(--eye-y));
 }
-.mr-wa-robot .mr-bot-antenna{
-  animation:mrBotAntenna 2.3s ease-in-out infinite;
-}
-.mr-wa-assistant:hover .mr-wa-panel,
-.mr-wa-assistant:focus-visible .mr-wa-panel{
+.mr3d-eye-glow{animation:mr3dBlink 5.8s infinite;transform-box:fill-box;transform-origin:center}
+.mr3d-core{animation:mr3dCore 2.7s ease-in-out infinite}
+.mr3d-antenna-light{animation:mr3dAntenna 2.2s ease-in-out infinite}
+.mr3d-arm-r{transform-box:fill-box;transform-origin:18% 18%}
+.mr3d-glass-shine{opacity:.72;mix-blend-mode:screen}
+.mr3d-ground{animation:mr3dShadow 4.4s ease-in-out infinite}
+
+.mr-wa-assistant.is-curious .mr3d-head{filter:drop-shadow(0 0 7px rgba(92,197,255,.32))}
+.mr-wa-assistant.is-curious .mr3d-eye-glow{filter:drop-shadow(0 0 5px rgba(133,225,255,.9))}
+.mr-wa-assistant:hover .mr-wa-panel,.mr-wa-assistant:focus-visible .mr-wa-panel{
   border-color:rgba(145,231,255,.98);
-  box-shadow:
-    inset 0 0 0 1px rgba(165,225,255,.08),
-    0 0 25px rgba(53,168,255,.36),
-    0 0 50px rgba(139,117,247,.16);
+  box-shadow:inset 0 1px 0 rgba(204,239,255,.1),0 0 28px rgba(53,168,255,.37),0 0 54px rgba(139,117,247,.15);
+  transform:translateY(-2px);
 }
-.mr-wa-assistant:hover .mr-wa-robot,
-.mr-wa-assistant:focus-visible .mr-wa-robot{
-  animation:none;transform:translateY(-5px) rotate(-2deg) scale(1.035);
-  transition:transform .25s ease;
-}
-.mr-wa-assistant:focus-visible{outline:2px solid #91e7ff;outline-offset:6px;border-radius:18px}
+.mr-wa-assistant:hover .mr3d-arm-r,.mr-wa-assistant:focus-visible .mr3d-arm-r{animation:mr3dWave .92s ease-in-out 2}
+.mr-wa-assistant:hover .mr3d-model,.mr-wa-assistant:focus-visible .mr3d-model{filter:brightness(1.08)}
+.mr-wa-assistant.is-greeting .mr3d-model{animation:mr3dHello .6s cubic-bezier(.2,.75,.2,1)}
+.mr-wa-assistant:focus-visible{outline:2px solid #91e7ff;outline-offset:7px;border-radius:20px}
+
 @keyframes mrWaSweep{
-  0%,58%{transform:translateX(-120%)}
-  78%,100%{transform:translateX(120%)}
+  0%,58%{transform:translateX(-125%)}
+  78%,100%{transform:translateX(125%)}
 }
-@keyframes mrBotFloat{
-  0%,100%{transform:translateY(0) rotate(0)}
-  50%{transform:translateY(-5px) rotate(1.2deg)}
+@keyframes mr3dFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-5px)}
 }
-@keyframes mrBotBlink{
-  0%,44%,48%,100%{transform:scaleY(1)}
-  46%{transform:scaleY(.08)}
+@keyframes mr3dShadow{
+  0%,100%{transform:scaleX(1);opacity:.24}
+  50%{transform:scaleX(.84);opacity:.13}
 }
-@keyframes mrBotCore{
-  0%,100%{filter:drop-shadow(0 0 2px rgba(53,168,255,.4))}
-  50%{filter:drop-shadow(0 0 9px rgba(145,231,255,.95))}
+@keyframes mr3dBlink{
+  0%,43%,47%,100%{transform:scaleY(1)}
+  45%{transform:scaleY(.10)}
 }
-@keyframes mrBotAntenna{
-  0%,100%{filter:drop-shadow(0 0 1px rgba(145,231,255,.4))}
-  50%{filter:drop-shadow(0 0 8px rgba(145,231,255,1))}
+@keyframes mr3dCore{
+  0%,100%{filter:drop-shadow(0 0 2px rgba(53,168,255,.42))}
+  50%{filter:drop-shadow(0 0 10px rgba(145,231,255,.96))}
+}
+@keyframes mr3dAntenna{
+  0%,100%{filter:drop-shadow(0 0 2px rgba(145,231,255,.45))}
+  50%{filter:drop-shadow(0 0 9px rgba(145,231,255,1))}
+}
+@keyframes mr3dWave{
+  0%,100%{transform:rotate(0deg)}
+  35%{transform:rotate(-24deg)}
+  65%{transform:rotate(12deg)}
+}
+@keyframes mr3dHello{
+  0%,100%{transform:perspective(540px) rotateX(var(--body-rx)) rotateY(var(--body-ry)) scale(1)}
+  45%{transform:perspective(540px) rotateX(var(--body-rx)) rotateY(var(--body-ry)) scale(1.07)}
 }
 @media(max-width:680px){
-  .mr-wa-assistant{right:10px;bottom:12px;width:250px;height:82px}
-  .mr-wa-panel{top:8px;width:202px;height:66px;padding:9px 55px 9px 13px;border-radius:14px}
+  .mr-wa-assistant{right:9px;bottom:10px;width:260px;height:94px}
+  .mr-wa-panel{left:0;top:18px;width:210px;height:66px;padding:9px 61px 9px 13px;border-radius:15px}
   .mr-wa-heading{gap:7px;font-size:15px}
   .mr-wa-icon,.mr-wa-icon svg{width:23px!important;height:23px!important}
   .mr-wa-icon{flex-basis:23px}
-  .mr-wa-sub{margin-left:30px;margin-top:3px;font-size:7.8px}
-  .mr-wa-online{margin-left:30px;margin-top:4px;font-size:6px}
-  .mr-wa-robot{right:-2px;bottom:-8px;width:78px;height:99px}
+  .mr-wa-sub{margin-left:30px;margin-top:3px;font-size:7.7px}
+  .mr-wa-online{margin-left:30px;margin-top:4px;font-size:5.8px}
+  .mr-wa-robot{right:-2px;bottom:-4px;width:94px;height:113px}
 }
 @media(max-width:360px){
-  .mr-wa-assistant{right:7px;bottom:10px;transform:scale(.92);transform-origin:right bottom}
+  .mr-wa-assistant{right:6px;bottom:8px;transform:scale(.92);transform-origin:right bottom}
 }
 @media(prefers-reduced-motion:reduce){
-  .mr-wa-panel::before,.mr-wa-robot,.mr-wa-robot .mr-bot-eye,.mr-wa-robot .mr-bot-core,.mr-wa-robot .mr-bot-antenna{animation:none!important}
+  .mr-wa-panel::before,.mr-wa-robot,.mr3d-eye-glow,.mr3d-core,.mr3d-antenna-light,.mr3d-ground{animation:none!important}
+  .mr3d-model,.mr3d-head,.mr3d-pupils{transform:none!important}
 }
-@media print{
-  .mr-wa-assistant{display:none!important}
-}
+@media print{.mr-wa-assistant{display:none!important}}
 </style>
 </head>
 <body>
@@ -384,58 +384,117 @@
   </span>
 
   <span class="mr-wa-robot" aria-hidden="true">
-    <svg viewBox="0 0 116 146">
-      <defs>
-        <linearGradient id="mrBotShell" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#1b2d48"/>
-          <stop offset=".48" stop-color="#0b1426"/>
-          <stop offset="1" stop-color="#25335a"/>
-        </linearGradient>
-        <linearGradient id="mrBotEdge" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#91e7ff"/>
-          <stop offset=".45" stop-color="#35a8ff"/>
-          <stop offset="1" stop-color="#8b75f7"/>
-        </linearGradient>
-        <linearGradient id="mrBotCore" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stop-color="#a6edff"/>
-          <stop offset=".55" stop-color="#35a8ff"/>
-          <stop offset="1" stop-color="#9d78ff"/>
-        </linearGradient>
-        <radialGradient id="mrBotFace" cx=".5" cy=".35" r=".8">
-          <stop offset="0" stop-color="#0b1628"/>
-          <stop offset="1" stop-color="#03070d"/>
-        </radialGradient>
-        <filter id="mrBotGlow" x="-70%" y="-70%" width="240%" height="240%">
-          <feGaussianBlur stdDeviation="4"/>
-        </filter>
-      </defs>
+    <span class="mr3d-model">
+      <svg viewBox="0 0 130 156">
+        <defs>
+          <radialGradient id="mr3dHeadShell" cx=".34" cy=".18" r=".92">
+            <stop offset="0" stop-color="#3a516e"/>
+            <stop offset=".23" stop-color="#18283e"/>
+            <stop offset=".62" stop-color="#09121f"/>
+            <stop offset="1" stop-color="#02060b"/>
+          </radialGradient>
+          <radialGradient id="mr3dTorsoShell" cx=".32" cy=".18" r=".94">
+            <stop offset="0" stop-color="#344964"/>
+            <stop offset=".28" stop-color="#15253b"/>
+            <stop offset=".7" stop-color="#07101c"/>
+            <stop offset="1" stop-color="#02050a"/>
+          </radialGradient>
+          <linearGradient id="mr3dMetalEdge" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#c4f4ff"/>
+            <stop offset=".18" stop-color="#61c8ff"/>
+            <stop offset=".48" stop-color="#2473c8"/>
+            <stop offset=".72" stop-color="#735de0"/>
+            <stop offset="1" stop-color="#b48cff"/>
+          </linearGradient>
+          <radialGradient id="mr3dVisor" cx=".5" cy=".18" r=".9">
+            <stop offset="0" stop-color="#172840"/>
+            <stop offset=".38" stop-color="#07111f"/>
+            <stop offset="1" stop-color="#010307"/>
+          </radialGradient>
+          <radialGradient id="mr3dEye" cx=".35" cy=".28" r=".78">
+            <stop offset="0" stop-color="#e5fbff"/>
+            <stop offset=".26" stop-color="#91e7ff"/>
+            <stop offset=".64" stop-color="#35a8ff"/>
+            <stop offset="1" stop-color="#5365e8"/>
+          </radialGradient>
+          <radialGradient id="mr3dCore" cx=".35" cy=".25" r=".8">
+            <stop offset="0" stop-color="#f0fdff"/>
+            <stop offset=".27" stop-color="#8be9ff"/>
+            <stop offset=".65" stop-color="#35a8ff"/>
+            <stop offset="1" stop-color="#815ff1"/>
+          </radialGradient>
+          <linearGradient id="mr3dLimb" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#243a54"/>
+            <stop offset=".45" stop-color="#0b1626"/>
+            <stop offset="1" stop-color="#02060c"/>
+          </linearGradient>
+          <linearGradient id="mr3dGlass" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#ffffff" stop-opacity=".5"/>
+            <stop offset=".34" stop-color="#bcefff" stop-opacity=".12"/>
+            <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+          </linearGradient>
+          <filter id="mr3dBlur" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="4.5"/>
+          </filter>
+          <filter id="mr3dSoftShadow" x="-60%" y="-60%" width="220%" height="220%">
+            <feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#000000" flood-opacity=".65"/>
+          </filter>
+        </defs>
 
-      <ellipse cx="58" cy="137" rx="34" ry="6" fill="#35a8ff" opacity=".22" filter="url(#mrBotGlow)"/>
-      <path d="M58 14V6" stroke="#91e7ff" stroke-width="2.5" stroke-linecap="round"/>
-      <circle class="mr-bot-antenna" cx="58" cy="4.5" r="3.5" fill="#91e7ff"/>
-      <path d="M37 22 25 12l-8 7 11 15M79 22l12-10 8 7-11 15" fill="url(#mrBotShell)" stroke="url(#mrBotEdge)" stroke-width="2"/>
+        <ellipse class="mr3d-ground" cx="66" cy="148" rx="37" ry="5" fill="#35a8ff" opacity=".23" filter="url(#mr3dBlur)"/>
 
-      <g class="mr-bot-head">
-        <rect x="20" y="20" width="76" height="55" rx="23" fill="url(#mrBotShell)" stroke="url(#mrBotEdge)" stroke-width="2.2"/>
-        <rect x="27" y="28" width="62" height="38" rx="17" fill="url(#mrBotFace)" stroke="#243a5d" stroke-width="1.4"/>
-        <path class="mr-bot-eye" d="M37 44c3.6-4.5 8-4.5 11.5 0" fill="none" stroke="#91e7ff" stroke-width="3.4" stroke-linecap="round"/>
-        <path class="mr-bot-eye" d="M67.5 44c3.6-4.5 8-4.5 11.5 0" fill="none" stroke="#91e7ff" stroke-width="3.4" stroke-linecap="round"/>
-        <path d="M49 55c5.8 4.8 12.2 4.8 18 0" fill="none" stroke="#8b75f7" stroke-width="2.4" stroke-linecap="round"/>
-        <circle cx="31" cy="26" r="2" fill="#bcefff" opacity=".8"/>
-      </g>
+        <g class="mr3d-body" filter="url(#mr3dSoftShadow)">
+          <g class="mr3d-leg-l">
+            <path d="M50 115 38 135 47 143 60 119Z" fill="url(#mr3dLimb)" stroke="url(#mr3dMetalEdge)" stroke-width="1.7"/>
+            <path d="M33 140h22l2.5 8H29Z" fill="#050b14" stroke="#496acb" stroke-width="1.4"/>
+            <path d="M35 141h15" stroke="#9eeaff" stroke-width="1" opacity=".55"/>
+          </g>
+          <g class="mr3d-leg-r">
+            <path d="m80 115 12 20-9 8-13-24Z" fill="url(#mr3dLimb)" stroke="url(#mr3dMetalEdge)" stroke-width="1.7"/>
+            <path d="M97 140H75l-2.5 8H101Z" fill="#050b14" stroke="#7b66e0" stroke-width="1.4"/>
+            <path d="M80 141h15" stroke="#b6a1ff" stroke-width="1" opacity=".55"/>
+          </g>
 
-      <path d="M34 73 19 91l9 13 11-14M82 73l15 18-9 13-11-14" fill="url(#mrBotShell)" stroke="url(#mrBotEdge)" stroke-width="2"/>
-      <circle cx="22" cy="96" r="5" fill="#101b32" stroke="#8b75f7" stroke-width="1.7"/>
-      <circle cx="94" cy="96" r="5" fill="#101b32" stroke="#35a8ff" stroke-width="1.7"/>
+          <path d="M43 78c5-7 13-10 23-10s18 3 23 10l-2 34c-4 8-12 12-21 12s-17-4-21-12Z" fill="url(#mr3dTorsoShell)" stroke="url(#mr3dMetalEdge)" stroke-width="2"/>
+          <path d="M49 82c5-4 10-5 17-5s12 1 17 5l-2 23c-3 6-8 9-15 9s-12-3-15-9Z" fill="#050b14" stroke="#284268" stroke-width="1.4"/>
+          <path class="mr3d-glass-shine" d="M49 80c9-8 24-7 32 1l-3 6c-9-5-19-6-28-1Z" fill="url(#mr3dGlass)"/>
+          <circle cx="66" cy="97" r="14" fill="#35a8ff" opacity=".12" filter="url(#mr3dBlur)"/>
+          <circle cx="66" cy="97" r="9.5" fill="#071426" stroke="#406a9c" stroke-width="1.2"/>
+          <path class="mr3d-core" d="m66 88 7.2 9-7.2 9-7.2-9Z" fill="url(#mr3dCore)"/>
+          <path d="M60 86h12" stroke="#d6f8ff" stroke-width="1" opacity=".42"/>
 
-      <rect x="36" y="72" width="44" height="44" rx="15" fill="url(#mrBotShell)" stroke="url(#mrBotEdge)" stroke-width="2.1"/>
-      <path d="M43 80h30l5 13-10 16H48L38 93Z" fill="#06101f" stroke="#2b446d" stroke-width="1.4"/>
-      <circle cx="58" cy="94" r="13" fill="#35a8ff" opacity=".16" filter="url(#mrBotGlow)"/>
-      <path class="mr-bot-core" d="m58 83 8 11-8 11-8-11Z" fill="url(#mrBotCore)"/>
+          <g class="mr3d-arm-l">
+            <path d="M44 80 28 91l4 21 9-3-2-14 12-8Z" fill="url(#mr3dLimb)" stroke="url(#mr3dMetalEdge)" stroke-width="1.7"/>
+            <circle cx="34" cy="111" r="5.4" fill="#081320" stroke="#35a8ff" stroke-width="1.4"/>
+          </g>
+          <g class="mr3d-arm-r">
+            <path d="m88 80 15 10-3 21-9-3 2-14-12-7Z" fill="url(#mr3dLimb)" stroke="url(#mr3dMetalEdge)" stroke-width="1.7"/>
+            <circle cx="98" cy="110" r="5.4" fill="#081320" stroke="#8b75f7" stroke-width="1.4"/>
+          </g>
+        </g>
 
-      <path d="m43 114-12 16 10 9 13-18M73 114l12 16-10 9-13-18" fill="url(#mrBotShell)" stroke="url(#mrBotEdge)" stroke-width="2"/>
-      <path d="M27 135h20l2 7H23ZM89 135H69l-2 7h26Z" fill="#091326" stroke="#8b75f7" stroke-width="1.7"/>
-    </svg>
+        <g class="mr3d-head" filter="url(#mr3dSoftShadow)">
+          <path d="M66 22V13" stroke="#7fdcff" stroke-width="2.2" stroke-linecap="round"/>
+          <circle class="mr3d-antenna-light" cx="66" cy="10" r="3.5" fill="#9aeaff"/>
+          <path d="M43 30 31 19l-8 7 12 16M89 30l12-11 8 7-12 16" fill="url(#mr3dHeadShell)" stroke="url(#mr3dMetalEdge)" stroke-width="1.8"/>
+          <rect x="23" y="26" width="86" height="59" rx="25" fill="url(#mr3dHeadShell)" stroke="url(#mr3dMetalEdge)" stroke-width="2.2"/>
+          <rect x="31" y="34" width="70" height="42" rx="19" fill="url(#mr3dVisor)" stroke="#2c466a" stroke-width="1.3"/>
+          <path class="mr3d-glass-shine" d="M34 39c16-12 44-11 62 1-3 3-5 6-7 9-15-7-32-7-49 1Z" fill="url(#mr3dGlass)"/>
+          <g class="mr3d-eye-glow">
+            <ellipse cx="48" cy="54" rx="8.5" ry="6.3" fill="#04101c" stroke="#264b70" stroke-width="1"/>
+            <ellipse cx="84" cy="54" rx="8.5" ry="6.3" fill="#04101c" stroke="#264b70" stroke-width="1"/>
+            <g class="mr3d-pupils">
+              <circle cx="48" cy="54" r="4.1" fill="url(#mr3dEye)"/>
+              <circle cx="84" cy="54" r="4.1" fill="url(#mr3dEye)"/>
+              <circle cx="46.8" cy="52.7" r="1.15" fill="#fff" opacity=".9"/>
+              <circle cx="82.8" cy="52.7" r="1.15" fill="#fff" opacity=".9"/>
+            </g>
+          </g>
+          <path d="M57 66c5.7 3.8 12.3 3.8 18 0" fill="none" stroke="#8b75f7" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="34" cy="39" r="2.1" fill="#e2f9ff" opacity=".72"/>
+        </g>
+      </svg>
+    </span>
   </span>
 </a>
 </body>
