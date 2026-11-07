@@ -709,127 +709,78 @@ setupHeroNameScramble();
 
 // Interactive WhatsApp robot cursor tracking
 function setupWhatsAppRobotTracking() {
-  const widget = document.querySelector(".mr-wa-assistant");
-  const robot = widget?.querySelector(".mr-wa-robot");
-  if (!widget || !robot) return;
+  const widget=document.querySelector(".mr-wa-assistant");
+  if(!widget) return;
 
-  const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let targetX = 0;
-  let targetY = 0;
-  let currentX = 0;
-  let currentY = 0;
-  let lastPointerMove = 0;
-  let frame = 0;
-  let greetingTimer = 0;
+  const coarse=window.matchMedia("(pointer: coarse)").matches;
+  const reduced=window.matchMedia("(prefers-reduced-motion: reduce)");
+  let tx=0,ty=0,cx=0,cy=0,lastMove=0,raf=0,tapTimer=0;
 
-  const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+  const clamp=(v,min,max)=>Math.min(max,Math.max(min,v));
 
-  function motionEnabledForBot() {
-    return !reducedMotion.matches &&
+  function enabled(){
+    return !reduced.matches &&
       !document.documentElement.classList.contains("motion-paused") &&
       !document.hidden;
   }
 
-  function applyLook(x, y) {
-    widget.style.setProperty("--head-x", (x * 5.2).toFixed(2) + "px");
-    widget.style.setProperty("--head-y", (y * 3.7).toFixed(2) + "px");
-    widget.style.setProperty("--head-rot", (x * 5.3).toFixed(2) + "deg");
-    widget.style.setProperty("--eye-x", (x * 4.8).toFixed(2) + "px");
-    widget.style.setProperty("--eye-y", (y * 3.0).toFixed(2) + "px");
-    widget.style.setProperty("--body-ry", (x * 7.0).toFixed(2) + "deg");
-    widget.style.setProperty("--body-rx", (-y * 5.0).toFixed(2) + "deg");
+  function targetFromPointer(x,y){
+    const r=widget.getBoundingClientRect();
+    const mx=r.left+r.width*.5;
+    const my=r.top+r.height*.42;
+    const dx=x-mx;
+    const dy=y-my;
+    tx=clamp(dx/460,-1,1);
+    ty=clamp(dy/330,-1,1);
+    widget.classList.toggle("is-near",Math.hypot(dx,dy)<360);
+    lastMove=performance.now();
   }
 
-  function updateTarget(clientX, clientY) {
-    const rect = robot.getBoundingClientRect();
-    const centerX = rect.left + rect.width * 0.52;
-    const centerY = rect.top + rect.height * 0.38;
-    const dx = clientX - centerX;
-    const dy = clientY - centerY;
-
-    targetX = clamp(dx / Math.max(430, window.innerWidth * 0.48), -1, 1);
-    targetY = clamp(dy / Math.max(310, window.innerHeight * 0.48), -1, 1);
-
-    const distance = Math.hypot(dx, dy);
-    widget.classList.toggle("is-curious", distance < 390);
-    lastPointerMove = performance.now();
+  function apply(){
+    widget.style.setProperty("--bot-ry",(cx*9).toFixed(2)+"deg");
+    widget.style.setProperty("--bot-rx",(-cy*6).toFixed(2)+"deg");
+    widget.style.setProperty("--bot-x",(cx*3.2).toFixed(2)+"px");
+    widget.style.setProperty("--bot-y",(cy*2.2).toFixed(2)+"px");
   }
 
-  function onPointerMove(event) {
-    if (coarsePointer || !motionEnabledForBot()) return;
-    updateTarget(event.clientX, event.clientY);
+  function animate(t){
+    if(!enabled()){
+      tx=0;ty=0;
+    }else if(coarse || t-lastMove>2200){
+      tx=Math.sin(t/1850)*.18;
+      ty=Math.sin(t/2450+1.1)*.09;
+      widget.classList.remove("is-near");
+    }
+    cx+=(tx-cx)*.085;
+    cy+=(ty-cy)*.085;
+    apply();
+    raf=requestAnimationFrame(animate);
   }
 
-  function animate(time) {
-    if (!motionEnabledForBot()) {
-      currentX += (0 - currentX) * 0.12;
-      currentY += (0 - currentY) * 0.12;
-      applyLook(currentX, currentY);
-      frame = requestAnimationFrame(animate);
-      return;
-    }
-
-    const idle = coarsePointer || time - lastPointerMove > 2400;
-    let desiredX = targetX;
-    let desiredY = targetY;
-
-    if (idle) {
-      desiredX = Math.sin(time / 1850) * 0.24;
-      desiredY = Math.sin(time / 2350 + 1.25) * 0.14;
-      widget.classList.remove("is-curious");
-    }
-
-    currentX += (desiredX - currentX) * 0.09;
-    currentY += (desiredY - currentY) * 0.09;
-    applyLook(currentX, currentY);
-    frame = requestAnimationFrame(animate);
+  if(!coarse){
+    window.addEventListener("pointermove",e=>targetFromPointer(e.clientX,e.clientY),{passive:true});
   }
 
-  widget.addEventListener("pointerenter", (event) => {
-    if (!coarsePointer) updateTarget(event.clientX, event.clientY);
-    widget.classList.add("is-curious");
+  widget.addEventListener("pointerdown",e=>{
+    if(!enabled()) return;
+    if(Number.isFinite(e.clientX)&&Number.isFinite(e.clientY)) targetFromPointer(e.clientX,e.clientY);
+    widget.classList.remove("is-tapped");
+    void widget.offsetWidth;
+    widget.classList.add("is-tapped");
+    clearTimeout(tapTimer);
+    tapTimer=setTimeout(()=>widget.classList.remove("is-tapped"),500);
+  },{passive:true});
+
+  window.addEventListener("blur",()=>{tx=0;ty=0;widget.classList.remove("is-near")});
+  document.addEventListener("portfolio:motionchange",()=>{
+    if(!enabled()){tx=0;ty=0;widget.classList.remove("is-near")}
   });
 
-  widget.addEventListener("pointerleave", () => {
-    widget.classList.remove("is-curious");
-  });
-
-  widget.addEventListener("pointerdown", (event) => {
-    if (motionEnabledForBot()) {
-      if (Number.isFinite(event.clientX) && Number.isFinite(event.clientY)) {
-        updateTarget(event.clientX, event.clientY);
-      }
-      widget.classList.remove("is-greeting");
-      void widget.offsetWidth;
-      widget.classList.add("is-greeting");
-      clearTimeout(greetingTimer);
-      greetingTimer = window.setTimeout(() => widget.classList.remove("is-greeting"), 700);
-    }
-  }, { passive: true });
-
-  window.addEventListener("pointermove", onPointerMove, { passive: true });
-  window.addEventListener("blur", () => {
-    targetX = 0;
-    targetY = 0;
-    widget.classList.remove("is-curious");
-  });
-
-  document.addEventListener("portfolio:motionchange", () => {
-    if (!motionEnabledForBot()) {
-      targetX = 0;
-      targetY = 0;
-      widget.classList.remove("is-curious");
-    }
-  });
-
-  frame = requestAnimationFrame(animate);
-
-  window.addEventListener("pagehide", () => {
-    cancelAnimationFrame(frame);
-    clearTimeout(greetingTimer);
-  }, { once: true });
+  raf=requestAnimationFrame(animate);
+  window.addEventListener("pagehide",()=>{
+    cancelAnimationFrame(raf);
+    clearTimeout(tapTimer);
+  },{once:true});
 }
 
 setupWhatsAppRobotTracking();
-
