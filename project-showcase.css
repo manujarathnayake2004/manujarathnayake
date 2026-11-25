@@ -116,3 +116,35 @@
     grid-column: auto;
   }
 }
+
+/* AquaLux project detail */
+.project-detail-main { padding: 128px 0 84px; }
+.project-back-link { display:inline-block; margin-bottom:34px; color:var(--muted); font-size:.82rem; }
+.project-detail-heading { max-width:900px; margin-bottom:34px; }
+.project-detail-heading h1 { margin:8px 0 16px; font-size:clamp(2.8rem,7vw,5.8rem); line-height:.94; letter-spacing:-.055em; }
+.project-detail-lead { max-width:820px; font-size:1rem; line-height:1.8; }
+.project-detail-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:24px; }
+.project-detail-cover { margin:36px 0 42px; overflow:hidden; border:1px solid rgba(143,208,255,.18); border-radius:22px; background:#07161c; box-shadow:0 24px 70px -42px rgba(53,168,255,.55); }
+.project-detail-cover img { width:100%; display:block; }
+.project-detail-summary { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:22px; margin:0 0 68px; }
+.project-detail-panel { padding:26px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.028); }
+.project-detail-panel h2 { margin:8px 0 12px; font-size:1.35rem; }
+.project-detail-screens { margin:0 0 70px; }
+.project-detail-section-heading { max-width:850px; margin-bottom:28px; }
+.project-detail-section-heading h2 { margin:7px 0 10px; font-size:clamp(2rem,4vw,3.4rem); }
+.aqualux-screen-feature { display:grid; grid-template-columns:minmax(0,1.45fr) minmax(260px,.55fr); gap:26px; align-items:center; margin:28px 0; padding:18px; border:1px solid var(--line); border-radius:20px; background:rgba(255,255,255,.022); }
+.aqualux-screen-feature .image-link { display:block; overflow:hidden; border-radius:13px; border:1px solid rgba(143,208,255,.14); }
+.aqualux-screen-feature img { display:block; width:100%; }
+.aqualux-screen-feature h3 { margin:7px 0 10px; font-size:1.3rem; }
+.project-interface-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:22px; }
+.project-interface-list article { display:flex; gap:16px; padding:19px; border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,.02); }
+.project-interface-list article span { color:#65dfcb; font-size:.7rem; font-weight:800; letter-spacing:.08em; }
+.project-interface-list h3 { margin:0 0 6px; font-size:.96rem; }
+.project-interface-list p { margin:0; font-size:.78rem; }
+.project-detail-cta { padding:34px; border:1px solid rgba(53,168,255,.22); border-radius:20px; background:linear-gradient(135deg,rgba(53,168,255,.06),rgba(101,223,203,.035)); }
+.project-detail-cta h2 { margin:8px 0 10px; }
+@media(max-width:760px){
+ .project-detail-main{padding-top:105px;}
+ .project-detail-summary,.aqualux-screen-feature,.project-interface-list{grid-template-columns:1fr;}
+ .project-detail-panel,.project-detail-cta{padding:20px;}
+}
