@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#061b20"/><stop offset=".55" stop-color="#0a2630"/><stop offset="1" stop-color="#081626"/></linearGradient>
+  <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#061b20" stop-opacity=".97"/><stop offset=".62" stop-color="#061b20" stop-opacity=".46"/><stop offset="1" stop-color="#061b20" stop-opacity=".12"/></linearGradient>
+  <filter id="shadow"><feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#000" flood-opacity=".45"/></filter>
+  <clipPath id="heroClip"><rect x="60" y="240" width="920" height="590" rx="30"/></clipPath>
+  <clipPath id="mini1"><rect x="1040" y="240" width="500" height="270" rx="26"/></clipPath>
+  <clipPath id="mini2"><rect x="1040" y="550" width="500" height="280" rx="26"/></clipPath>
+</defs>
+<rect width="1600" height="900" fill="url(#bg)"/>
+<circle cx="1370" cy="90" r="330" fill="#1d54a0" opacity=".12"/>
+<circle cx="1290" cy="760" r="380" fill="#0ab0a7" opacity=".08"/>
+<rect x="58" y="56" width="350" height="56" rx="28" fill="#0b3438" stroke="#28d8c8" stroke-opacity=".7"/>
+<text x="86" y="93" fill="#81e8df" font-family="Arial,sans-serif" font-size="23" font-weight="700" letter-spacing="2">SOFTWARE ENGINEERING PROJECT</text>
+<text x="58" y="177" fill="#f4fbff" font-family="Arial,sans-serif" font-size="66" font-weight="800">AquaLux Auto Spa</text>
+<text x="60" y="219" fill="#a8c5cf" font-family="Arial,sans-serif" font-size="28">AI-assisted vehicle wash center management system</text>
+<g filter="url(#shadow)">
+  <rect x="58" y="238" width="924" height="594" rx="32" fill="#07171b" stroke="#26cfc3" stroke-width="3"/>
+  <image href="hero-background.jpg" x="60" y="240" width="920" height="590" preserveAspectRatio="xMidYMid slice" clip-path="url(#heroClip)"/>
+  <rect x="60" y="240" width="920" height="590" fill="url(#fade)" clip-path="url(#heroClip)"/>
+  <text x="112" y="365" fill="#8ee9e2" font-family="Arial,sans-serif" font-size="19" font-weight="700" letter-spacing="3">PREMIUM CARE FOR EVERY JOURNEY</text>
+  <text x="110" y="448" fill="#fff" font-family="Arial,sans-serif" font-size="64" font-weight="800">Drive Clean.</text>
+  <text x="110" y="514" fill="#11aeb2" font-family="Arial,sans-serif" font-size="64" font-weight="800">Shine Brighter.</text>
+  <text x="112" y="570" fill="#c8dfe4" font-family="Arial,sans-serif" font-size="22">Bookings • payments • reports • AI recommendations</text>
+</g>
+<g filter="url(#shadow)">
+  <rect x="1038" y="238" width="504" height="274" rx="28" fill="#07171b" stroke="#26cfc3" stroke-width="3"/>
+  <image href="smart-wash-advisor.jpg" x="1040" y="240" width="500" height="270" preserveAspectRatio="xMidYMid slice" clip-path="url(#mini1)"/>
+  <rect x="1065" y="432" width="310" height="52" rx="20" fill="#071b21" fill-opacity=".93"/>
+  <text x="1090" y="465" fill="#8ee9e2" font-family="Arial,sans-serif" font-size="20" font-weight="700">Condition-based AI recommendation</text>
+</g>
+<g filter="url(#shadow)">
+  <rect x="1038" y="548" width="504" height="284" rx="28" fill="#07171b" stroke="#26cfc3" stroke-width="3"/>
+  <image href="secure-ai.jpg" x="1040" y="550" width="500" height="280" preserveAspectRatio="xMidYMid slice" clip-path="url(#mini2)"/>
+  <rect x="1065" y="746" width="282" height="52" rx="20" fill="#071b21" fill-opacity=".94"/>
+  <text x="1092" y="779" fill="#8ee9e2" font-family="Arial,sans-serif" font-size="20" font-weight="700">Secure customer AI access</text>
+</g>
+<text x="1120" y="183" fill="#7bdad3" font-family="Arial,sans-serif" font-size="23" font-weight="700">PYTHON • FLASK • SQLITE • JAVASCRIPT</text>
+</svg>

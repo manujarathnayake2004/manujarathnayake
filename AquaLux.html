@@ -4,101 +4,129 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AquaLux Auto Spa | Manuja Rathnayake</title>
-  <meta name="description" content="AquaLux Auto Spa, an AI-assisted vehicle wash center management system by Manuja Rathnayake.">
+  <meta name="description" content="AquaLux Auto Spa, an AI-assisted vehicle wash center management system built with Python, Flask, SQLite and JavaScript.">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="icon" type="image/png" href="Manuja_Rathnayake_logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="portfolio.css?v=20261126-aqua1">
-  <link rel="stylesheet" href="project-showcase.css?v=20261126-aqua1">
-  <script src="portfolio.js?v=20261126-aqua1" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="portfolio.css?v=20261126-aqua2">
+  <link rel="stylesheet" href="project-showcase.css?v=20261126-aqua2">
+  <script src="portfolio.js?v=20261126-aqua2" defer></script>
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="Manuja Rathnayake home">Manuja Rathnayake<span>.</span></a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
-      <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
-        <a href="index.html">Home</a>
-        <a href="Programming.html" class="is-active">Programming</a>
-        <a href="Graphic%20Design.html">Graphic Design</a>
-        <a href="index.html#about">About</a>
-        <a href="index.html#contact">Contact</a>
-      </nav>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="container nav-inner">
+    <a href="index.html#home" class="logo">Manuja Rathnayake<span>.</span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-menu">Menu</button>
+    <nav class="menu" id="primary-menu" aria-label="Main navigation">
+      <a href="index.html#work">Portfolio</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <header class="container gallery-header aqua-project-header">
+    <a class="back-link" href="Programming.html">&larr; Back to Programming</a>
+    <div class="aqua-project-hero">
+      <div class="aqua-project-copy">
+        <p class="eyebrow">Final software engineering project</p>
+        <h1>AquaLux Auto Spa</h1>
+        <p class="aqua-lead">An AI-assisted vehicle wash center management system designed around the complete customer journey, from discovering services and booking a wash to payments, reports, live availability and explainable vehicle-care recommendations.</p>
+        <div class="tags aqua-tags" aria-label="Technologies">
+          <span class="tag">Python</span><span class="tag">Flask</span><span class="tag">SQLite</span><span class="tag">JavaScript</span><span class="tag">AI-assisted logic</span>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="#interface">Explore interface</a>
+          <a class="btn btn-secondary" href="https://github.com/manujarathnayake2004/AquaLux-Vehicle-Wash-Center" target="_blank" rel="noopener noreferrer">View GitHub &nearr;</a>
+        </div>
+      </div>
+      <a class="aqua-cover-link image-link" href="assets/projects/aqualux/aqualux-cover.svg" data-lightbox="AquaLux Auto Spa project cover" aria-label="Enlarge AquaLux project cover">
+        <img src="assets/projects/aqualux/aqualux-cover.svg" alt="AquaLux Auto Spa project cover" width="1600" height="900" loading="eager" decoding="async">
+      </a>
     </div>
   </header>
 
-  <main class="project-detail-main">
-    <div class="container">
-      <a class="project-back-link" href="Programming.html">&larr; Back to Programming</a>
+  <div class="container gallery-main aqua-project-main">
+    <section class="aqua-facts">
+      <article><strong>3 roles</strong><span>Customer, staff and admin workflows</span></article>
+      <article><strong>AI support</strong><span>Condition-based package recommendations</span></article>
+      <article><strong>Live data</strong><span>Bookings, availability, payments and reports</span></article>
+      <article><strong>SQLite</strong><span>Persistent project data and demand evidence</span></article>
+    </section>
 
-      <section class="project-detail-heading">
-        <p class="eyebrow">Software engineering project</p>
-        <h1>AquaLux Auto Spa</h1>
-        <p class="project-detail-lead">An AI-assisted vehicle wash center management system combining customer and vehicle management, bookings, payments, reporting, live availability and explainable vehicle-care recommendations.</p>
-        <div class="tags" aria-label="Technologies">
-          <span class="tag">Python</span><span class="tag">Flask</span><span class="tag">SQLite</span><span class="tag">JavaScript</span><span class="tag">AI-assisted recommendations</span>
-        </div>
-        <div class="project-detail-actions">
-          <a class="button button-primary" href="https://github.com/manujarathnayake2004/AquaLux-Vehicle-Wash-Center" target="_blank" rel="noopener noreferrer">View GitHub project &nearr;</a>
-          <a class="button button-secondary" href="#screens">View interface screens</a>
-        </div>
-      </section>
+    <section class="aqua-overview">
+      <div><p class="eyebrow">Project overview</p><h2>Designed around real vehicle-wash operations</h2></div>
+      <div class="aqua-overview-copy">
+        <p>AquaLux combines a public-facing vehicle-care website with authenticated workspaces for customers, staff and administrators. The system supports customer and vehicle records, booking control, payments, reports, secure access and an AI-assisted recommendation workflow.</p>
+        <p>The interface uses a consistent dark automotive visual language with cyan and teal accents, large vehicle photography, glass-like panels and clear task-focused forms.</p>
+      </div>
+    </section>
 
-      <figure class="project-detail-cover">
-        <img src="assets/projects/aqualux/aqualux-cover.webp" alt="AquaLux Auto Spa portfolio cover built from real project interface screenshots" width="1600" height="900" decoding="async">
-      </figure>
+    <section id="interface" class="aqua-interface-section">
+      <div class="section-heading"><div><p class="eyebrow">Interface showcase</p><h2>Public customer experience</h2></div></div>
+      <div class="aqua-gallery-grid">
+        <figure class="aqua-visual-card aqua-visual-wide">
+          <a class="image-link" href="assets/projects/aqualux/hero-background.jpg" data-lightbox="AquaLux landing visual"><img src="assets/projects/aqualux/hero-background.jpg" alt="AquaLux vehicle wash landing visual" loading="lazy" decoding="async"></a>
+          <figcaption><span class="eyebrow">Home experience</span><h3>Premium vehicle-care landing page</h3><p>Service discovery, package navigation, customer login and booking actions are presented with a cinematic automotive style.</p></figcaption>
+        </figure>
+        <figure class="aqua-visual-card">
+          <a class="image-link" href="assets/projects/aqualux/premium-wash.jpg" data-lightbox="AquaLux wash service visual"><img src="assets/projects/aqualux/premium-wash.jpg" alt="AquaLux vehicle wash service visual" loading="lazy" decoding="async"></a>
+          <figcaption><span class="eyebrow">Services</span><h3>Vehicle-care services</h3><p>Exterior wash, full vehicle wash and smart package guidance are grouped into clear service choices.</p></figcaption>
+        </figure>
+        <figure class="aqua-visual-card">
+          <a class="image-link" href="assets/projects/aqualux/secure-ai.jpg" data-lightbox="AquaLux secure AI access visual"><img src="assets/projects/aqualux/secure-ai.jpg" alt="AquaLux secure AI access visual" loading="lazy" decoding="async"></a>
+          <figcaption><span class="eyebrow">Secure access</span><h3>Authenticated AI support</h3><p>AI recommendations are protected behind customer authentication and connected to saved customer and vehicle data.</p></figcaption>
+        </figure>
+      </div>
+    </section>
 
-      <section class="project-detail-summary" aria-label="AquaLux project overview">
-        <article class="project-detail-panel">
-          <p class="eyebrow">Project overview</p>
-          <h2>Designed around the complete customer journey</h2>
-          <p>AquaLux supports public service discovery, customer authentication, vehicle wash bookings, customer and vehicle records, payments and operational reporting. The interface uses a dark automotive visual system across the public site and authenticated workspaces.</p>
-        </article>
-        <article class="project-detail-panel">
-          <p class="eyebrow">AI and decision support</p>
-          <h2>Explainable vehicle-care assistance</h2>
-          <p>The authenticated AI workspace provides condition-based package recommendations, care scoring, stored recommendation history, live booking availability and a conversational vehicle-wash assistant.</p>
-        </article>
-      </section>
+    <section class="aqua-interface-section">
+      <div class="section-heading"><div><p class="eyebrow">AI workspace</p><h2>Decision support and customer intelligence</h2></div></div>
+      <div class="aqua-gallery-grid aqua-gallery-balanced">
+        <figure class="aqua-visual-card">
+          <a class="image-link" href="assets/projects/aqualux/login-bg.jpg" data-lightbox="AquaLux AI login visual"><img src="assets/projects/aqualux/login-bg.jpg" alt="AquaLux AI login visual" loading="lazy" decoding="async"></a>
+          <figcaption><span class="eyebrow">Authentication</span><h3>AquaLux AI login</h3><p>A focused sign-in flow separates secure management and AI features from the public website.</p></figcaption>
+        </figure>
+        <figure class="aqua-visual-card">
+          <a class="image-link" href="assets/projects/aqualux/smart-wash-advisor.jpg" data-lightbox="AquaLux smart wash advisor visual"><img src="assets/projects/aqualux/smart-wash-advisor.jpg" alt="AquaLux smart wash advisor visual" loading="lazy" decoding="async"></a>
+          <figcaption><span class="eyebrow">Recommendation</span><h3>Condition-based vehicle-care advisor</h3><p>The advisor combines vehicle type, dirt level, interior needs and special conditions to explain a suitable wash package.</p></figcaption>
+        </figure>
+        <figure class="aqua-visual-card">
+          <a class="image-link" href="assets/projects/aqualux/vehicle-care.jpg" data-lightbox="AquaLux vehicle care visual"><img src="assets/projects/aqualux/vehicle-care.jpg" alt="AquaLux vehicle care visual" loading="lazy" decoding="async"></a>
+          <figcaption><span class="eyebrow">Availability and demand</span><h3>Operational booking intelligence</h3><p>Stored booking records support live slot availability, operating-hour checks, already-booked times and demand indicators.</p></figcaption>
+        </figure>
+      </div>
+    </section>
 
-      <section id="screens" class="project-detail-screens">
-        <div class="project-detail-section-heading">
-          <p class="eyebrow">Real project interface</p>
-          <h2>AquaLux UI showcase</h2>
-          <p>The cover above was created from the actual AquaLux screens. The interface collection includes the public home and services experience, secure AI access, FAQ and booking areas, AI login, customer recommendation workspace, live booking availability and the Vehicle Wash Assistant.</p>
-        </div>
+    <section class="aqua-capabilities">
+      <p class="eyebrow">Core capabilities</p>
+      <h2>What the system demonstrates</h2>
+      <div class="aqua-capability-grid">
+        <article><span>01</span><h3>Role-based access</h3><p>Separate customer, staff and admin flows with protected pages.</p></article>
+        <article><span>02</span><h3>Booking control</h3><p>Prevents conflicting bookings and supports operating-day rules.</p></article>
+        <article><span>03</span><h3>Payments and reports</h3><p>Payment records, receipts and daily, weekly and monthly reporting.</p></article>
+        <article><span>04</span><h3>AI recommendation</h3><p>Explainable package suggestions based on vehicle condition inputs.</p></article>
+        <article><span>05</span><h3>Live availability</h3><p>Available and booked times derived from stored booking data.</p></article>
+        <article><span>06</span><h3>Responsive UI</h3><p>Consistent dark visual system across public and authenticated areas.</p></article>
+      </div>
+    </section>
 
-        <div class="aqualux-screen-feature">
-          <a class="image-link" href="assets/projects/aqualux/aqualux-home.webp" data-lightbox="AquaLux Home interface" aria-label="Open AquaLux Home screenshot">
-            <img src="assets/projects/aqualux/aqualux-home.webp" alt="AquaLux Auto Spa home interface screenshot" loading="lazy" decoding="async">
-          </a>
-          <div>
-            <p class="eyebrow">Public experience</p>
-            <h3>Premium vehicle-care landing experience</h3>
-            <p>The public interface introduces wash services, packages, AquaLux AI, booking and customer access within a consistent automotive visual identity.</p>
-          </div>
-        </div>
+    <section class="aqua-project-cta">
+      <div><p class="eyebrow">Source code</p><h2>Explore the AquaLux implementation</h2><p>Review the Flask application, SQLite integration, interface code and project documentation in the repository.</p></div>
+      <a class="btn btn-primary" href="https://github.com/manujarathnayake2004/AquaLux-Vehicle-Wash-Center" target="_blank" rel="noopener noreferrer">Open GitHub project &nearr;</a>
+    </section>
+  </div>
+</main>
 
-        <div class="project-interface-list">
-          <article><span>01</span><div><h3>Home and services</h3><p>Premium landing experience, service discovery and wash-package presentation.</p></div></article>
-          <article><span>02</span><div><h3>Secure AI access</h3><p>Registered-customer authentication before entering the protected AI workspace.</p></div></article>
-          <article><span>03</span><div><h3>Customer AI workspace</h3><p>Condition-based recommendations connected to the signed-in customer and vehicle.</p></div></article>
-          <article><span>04</span><div><h3>Live availability</h3><p>Operating hours, free appointment times, already-booked slots and demand evidence from SQLite records.</p></div></article>
-          <article><span>05</span><div><h3>Vehicle Wash Assistant</h3><p>Conversational interface for package recommendations, wash-time estimates and booking-demand questions.</p></div></article>
-        </div>
-      </section>
-
-      <section class="project-detail-cta">
-        <p class="eyebrow">Source code</p>
-        <h2>Explore the full AquaLux implementation</h2>
-        <p>Review the application structure, Flask routes, database integration and project implementation on GitHub.</p>
-        <a class="button button-primary" href="https://github.com/manujarathnayake2004/AquaLux-Vehicle-Wash-Center" target="_blank" rel="noopener noreferrer">Open AquaLux on GitHub &nearr;</a>
-      </section>
-    </div>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner"><p>&copy; 2026 Manuja Rathnayake.</p><a href="Programming.html">Programming portfolio</a></div>
-  </footer>
+<dialog class="image-dialog" id="image-dialog" aria-labelledby="image-title">
+  <div class="dialog-toolbar"><h2 id="image-title">AquaLux preview</h2><button class="dialog-close" type="button" autofocus>Close</button></div><img alt="">
+</dialog>
+<footer class="footer"><div class="container footer-inner"><p>&copy; <span data-year>2026</span> Manuja Rathnayake. All rights reserved.</p><a href="Programming.html">Back to Programming</a></div></footer>
 </body>
 </html>
